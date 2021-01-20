@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+html {
+    font-size: 20px;
+  }
+  
+  body {
+    font-size: 1rem;
+  }
+  
+.header-wrap{
+    position:relative;
+}
+
+header{
+    width:100%;
+    position:relative;
+}
+header .lnb{
+    width:100%;
+    background:#f0eff0;
+}
+header .lnb ul{
+    float:right;
+}
+header .lnb ul li{
+    float:left;
+}
+header .lnb ul li a{
+    font-size:.7rem;
+    padding:.5rem .75rem;
+}
