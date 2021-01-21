@@ -278,6 +278,8 @@ header :global .logo h1 a {
   width: 195px;
   height: 56px;
   line-height: 56px;
+  background: url("../../assets/images/revise_logo_main.png") no-repeat
+    center/195px auto;
 }
 
 header :global .gnb {
