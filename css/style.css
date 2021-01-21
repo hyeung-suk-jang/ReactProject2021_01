@@ -1,9 +1,9 @@
 @charset "utf-8";
 
 html {
+    width:100%;
     font-size: 20px;
-  }
-  
+  } 
   body {
     font-size: 1rem;
   }
@@ -21,12 +21,40 @@ header .lnb{
     background:#f0eff0;
 }
 header .lnb ul{
-    float:right;
+    padding: 0;
+    font-size: 0;
+    text-align: right;
+    position: relative;
+    max-width: 1240px;
+    margin: 0 auto;
 }
 header .lnb ul li{
-    float:left;
+    display: inline-block;
+    margin-left: 0;
+    font-size: 15px;
+    color: #565656;
+    line-height: 33px;
+    position: relative;
+    padding: 0 15px; 
+}
+header .lnb ul li a:after{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1px;
+    height: 10px;
+    background: #929292;
+    transform: translateY(-50%);
+    content: '';
+}
+header .lnb ul li:first-child a::after{
+    display:none;
 }
 header .lnb ul li a{
-    font-size:.7rem;
-    padding:.5rem .75rem;
+    display: block;
+    color: #6a6a6a;
+    font-size: 14px;
+    font-weight: 300;
+   
 }
