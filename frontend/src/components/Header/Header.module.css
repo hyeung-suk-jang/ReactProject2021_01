@@ -1,0 +1,132 @@
+.headerWrapper {
+  position: relative;
+}
+
+header {
+  width: 100%;
+  position: relative;
+}
+header .lnb {
+  width: 100%;
+  background: #f0eff0;
+}
+header .lnb ul {
+  padding: 0;
+  font-size: 0;
+  text-align: right;
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+header .lnb ul li {
+  display: inline-block;
+  margin-left: 0;
+  font-size: 15px;
+  color: #565656;
+  line-height: 33px;
+  position: relative;
+  padding: 0 15px;
+}
+header .lnb ul li a:after {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1px;
+  height: 10px;
+  background: #929292;
+  transform: translateY(-50%);
+  content: "";
+}
+header .lnb ul li:first-child a::after {
+  display: none;
+}
+header .lnb ul li a {
+  display: block;
+  color: #6a6a6a;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+header .logo {
+  width: 100%;
+  padding: 14px 0;
+  border-bottom: 1px solid #e8e8e7;
+}
+header .logo .logo_inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+header .logo h1 {
+  display: inline-block;
+  text-align: left;
+}
+header .logo h1 a {
+  display: block;
+  width: 195px;
+  height: 56px;
+  line-height: 56px;
+}
+
+header .gnb {
+  width: 100%;
+  position: relative;
+}
+header .gnb_inner {
+  position: relative;
+  max-width: 1240px;
+  margin: 0 auto;
+  height: 60px;
+}
+header .gnb ul {
+}
+header .gnb ul li {
+  float: left;
+  position: relative;
+  float: left;
+  max-width: 248px;
+  width: 248px;
+  padding: 8px 20px;
+  box-sizing: border-box;
+}
+header .gnb ul li a {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 700;
+  color: #303030;
+  text-align: left;
+}
+header .gnb ul li a span {
+  display: block;
+  padding: 7px 16px 8px 17px;
+}
+header .gnb ul li a:hover span {
+  color: #fff;
+  background: #165698;
+}
+.menu_bg {
+  display: none;
+  position: absolute;
+  background: #fff;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 611px;
+  margin-top: -3px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-shadow: 0px 1px 0px 0px #585a5d;
+}
+.gnb-depth2 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 20px 0 30px 0;
+  background: #fff;
+  border-right: 1px solid #f4f7f9;
+  border-left: 1px solid #f4f7f9;
+  border-top: solid 1px #e8e8e8;
+}
