@@ -1,6 +1,6 @@
 import React from "react";
 
-const SearchDoc = () => {
+const SearchDoc = () => (
   <li>
     <a href="" className="depth">
       <span>자료검색</span>
@@ -40,7 +40,7 @@ const SearchDoc = () => {
         <a href="">국가서지 LOD</a>
       </li>
     </ul>
-  </li>;
-};
+  </li>
+);
 
 export default SearchDoc;
