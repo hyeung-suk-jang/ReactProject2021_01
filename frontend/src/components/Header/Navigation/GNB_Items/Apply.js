@@ -1,15 +1,20 @@
 import React from "react";
 
-const Apply = ({ onMouseGnb, openDepth2 }) => (
+const Apply = ({ onMouseGnb, depth2 }) => (
   <li
-    onMouseLeave={() => onMouseGnb(false)}
-    onMouseOver={() => onMouseGnb(true)}
-    onFocus={() => onMouseGnb(true)}
+    onMouseLeave={() => onMouseGnb(false, "신청/참여")}
+    onMouseOver={() => onMouseGnb(true, "신청/참여")}
+    onFocus={() => onMouseGnb(true, "신청/참여")}
   >
-    <a href="" className="depth">
+    <a
+      href=""
+      className={
+        depth2.open && depth2.category === "신청/참여" ? "a_on" : "a_out"
+      }
+    >
       <span>신청 &middot; 참여</span>
     </a>
-    <ul className={openDepth2 ? "gnb-depth2_open" : "gnb-depth2"}>
+    <ul className={depth2.open ? "gnb-depth2_open" : "gnb-depth2"}>
       <li className="gnb-depth2_item">
         <a href=""> 자료신청안내</a>
       </li>

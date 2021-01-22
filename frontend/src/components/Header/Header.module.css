@@ -94,19 +94,28 @@ header :global .gnb ul li {
   padding: 8px 20px;
   box-sizing: border-box;
 }
-header :global .gnb ul li a {
+
+header :global .gnb ul li a,
+header :global .gnb ul li .a_out,
+header :global .gnb ul li .a_on {
   display: inline-block;
   font-size: 22px;
   font-weight: 700;
   color: #303030;
   text-align: left;
 }
-header :global .gnb ul li a span {
+
+header :global .gnb ul li a span,
+header :global .gnb ul li .a_out span {
   display: block;
+  font-size: 22px;
+  font-weight: 700;
   padding: 7px 16px 8px 17px;
 }
-header :global .gnb ul li a:hover span {
+header :global .gnb ul li .a_on span {
   color: #fff;
+  font-size: 22px;
+  font-weight: 700;
   background: #165698;
 }
 

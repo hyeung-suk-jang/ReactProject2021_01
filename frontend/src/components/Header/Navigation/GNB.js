@@ -18,27 +18,27 @@ const GNB = () => {
           <SearchDoc
             className="gnb-depth1_item"
             onMouseGnb={setDepth2}
-            openDepth2={depth2}
+            depth2={{ open: depth2.open, category: depth2.category }}
           />
           <DigitalCollection
             className="gnb-depth1_item"
             onMouseGnb={setDepth2}
-            openDepth2={depth2}
+            depth2={{ open: depth2.open, category: depth2.category }}
           />
           <Apply
             className="gnb-depth1_item"
             onMouseGnb={setDepth2}
-            openDepth2={depth2}
+            depth2={{ open: depth2.open, category: depth2.category }}
           />
           <LibraryGuide
             className="gnb-depth1_item"
             onMouseGnb={setDepth2}
-            openDepth2={depth2}
+            depth2={{ open: depth2.open, category: depth2.category }}
           />
           <LibraryIntro
             className="gnb-depth1_item"
             onMouseGnb={setDepth2}
-            openDepth2={depth2}
+            depth2={{ open: depth2.open, category: depth2.category }}
           />
         </ul>
       </div>
