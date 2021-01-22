@@ -135,3 +135,17 @@ header :global .gnb ul li a:hover span {
   border-left: 1px solid #f4f7f9;
   border-top: solid 1px #e8e8e8;
 }
+
+:global .gnb-depth2_open {
+  display: block;
+  z-index: 500;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 20px 0 30px 0;
+  background: #fff;
+  border-right: 1px solid #f4f7f9;
+  border-left: 1px solid #f4f7f9;
+  border-top: solid 1px #e8e8e8;
+}

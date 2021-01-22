@@ -1,11 +1,15 @@
 import React from "react";
 
-const DigitalCollection = () => (
-  <li>
+const DigitalCollection = ({ onMouseGnb, openDepth2 }) => (
+  <li
+    onMouseLeave={() => onMouseGnb(false)}
+    onMouseOver={() => onMouseGnb(true)}
+    onFocus={() => onMouseGnb(true)}
+  >
     <a href="" className="depth">
       <span>디지털컬렉션</span>
     </a>
-    <ul className="gnb-depth2">
+    <ul className={openDepth2 ? "gnb-depth2_open" : "gnb-depth2"}>
       <li className="gnb-depth2_item">
         <a href="">주제별컬렉션</a>
       </li>

@@ -1,11 +1,15 @@
 import React from "react";
 
-const SearchDoc = () => (
-  <li>
+const SearchDoc = ({ onMouseGnb, openDepth2 }) => (
+  <li
+    onMouseLeave={() => onMouseGnb(false)}
+    onMouseOver={() => onMouseGnb(true)}
+    onFocus={() => onMouseGnb(true)}
+  >
     <a href="" className="depth">
       <span>자료검색</span>
     </a>
-    <ul className="gnb-depth2">
+    <ul className={openDepth2 ? "gnb-depth2_open" : "gnb-depth2"}>
       <li className="gnb-depth2_item">
         <a href="">소장자료</a>
       </li>

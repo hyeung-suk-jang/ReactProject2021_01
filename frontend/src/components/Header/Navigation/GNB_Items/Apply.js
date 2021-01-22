@@ -1,11 +1,15 @@
 import React from "react";
 
-const Apply = () => (
-  <li>
+const Apply = ({ onMouseGnb, openDepth2 }) => (
+  <li
+    onMouseLeave={() => onMouseGnb(false)}
+    onMouseOver={() => onMouseGnb(true)}
+    onFocus={() => onMouseGnb(true)}
+  >
     <a href="" className="depth">
       <span>신청 &middot; 참여</span>
     </a>
-    <ul className="gnb-depth2">
+    <ul className={openDepth2 ? "gnb-depth2_open" : "gnb-depth2"}>
       <li className="gnb-depth2_item">
         <a href=""> 자료신청안내</a>
       </li>

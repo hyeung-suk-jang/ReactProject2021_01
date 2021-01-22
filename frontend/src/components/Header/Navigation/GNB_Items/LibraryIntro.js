@@ -1,11 +1,15 @@
 import React from "react";
 
-const LibraryIntro = () => (
-  <li>
+const LibraryIntro = ({ onMouseGnb, openDepth2 }) => (
+  <li
+    onMouseLeave={() => onMouseGnb(false)}
+    onMouseOver={() => onMouseGnb(true)}
+    onFocus={() => onMouseGnb(true)}
+  >
     <a href="" className="depth">
       <span>도서관 소개</span>
     </a>
-    <ul className="gnb-depth2">
+    <ul className={openDepth2 ? "gnb-depth2_open" : "gnb-depth2"}>
       <li className="gnb-depth2_item">
         <a href="">국립중앙도서관</a>
       </li>

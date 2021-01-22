@@ -33,6 +33,7 @@
       "quotes": ["off", "single"],
       "react/self-closing-comp":0,
       "react/prop-types":"off",
+      "no-unused-vars":"off",
      
     }
   }

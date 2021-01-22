@@ -1,11 +1,15 @@
 import React from "react";
 
-const LibraryGuide = () => (
-  <li>
+const LibraryGuide = ({ onMouseGnb, openDepth2 }) => (
+  <li
+    onMouseLeave={() => onMouseGnb(false)}
+    onMouseOver={() => onMouseGnb(true)}
+    onFocus={() => onMouseGnb(true)}
+  >
     <a href="" className="depth">
       <span>도서관 이용</span>
     </a>
-    <ul className="gnb-depth2">
+    <ul className={openDepth2 ? "gnb-depth2_open" : "gnb-depth2"}>
       <li className="gnb-depth2_item">
         <a href="">집에서 이용하는 도서관</a>
       </li>
