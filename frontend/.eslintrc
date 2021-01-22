@@ -32,7 +32,7 @@
       "no-param-reassign": "off",
       "quotes": ["off", "single"],
       "react/self-closing-comp":0,
-      "react/prop-types":"off"
+      "react/prop-types":"off",
      
     }
   }

@@ -1,14 +1,14 @@
 import React from "react";
 import Layout from "./components/Layout/Layout";
 import Header from "./components/Header/Header";
-import SearchBar from "./components/SearchBar/SearchBar";
+import Main from "./components/Main/Main";
 
 function App() {
   return (
     <div>
       <Layout>
         <Header />
-        <SearchBar />
+        <Main />
       </Layout>
     </div>
   );
