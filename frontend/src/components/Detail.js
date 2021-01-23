@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { xml2json } from 'xml-js';
+import Books from './Books';
 
 const Detail = () => {
     const {product} = useParams()
@@ -13,7 +14,6 @@ const Detail = () => {
             try {
               await axios.get(`https://www.nl.go.kr/NL/search/openApi/search.do?key=${process.env.REACT_APP_NL_API_KEY}&kwd=${product}`)
               .then(function(response){
-                console.log(response.data)
                 setData(JSON.parse(xml2json(response.data, { compact: true, spaces: 4 })));
               });
               
@@ -35,10 +35,7 @@ const Detail = () => {
         console.log(loading)
         return (
             <div>
-                나왔다!
-                {console.log(data)}
-                {console.log('Loading', loading)}
-                <h1>{console.log(data.root.result)}</h1>
+                {data.root.result.item.map((i)=><Books detail={i} key={i.id._text}/>)}
             </div>
         )
     }
