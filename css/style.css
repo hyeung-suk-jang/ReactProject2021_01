@@ -215,11 +215,117 @@ header .gnb ul li a:hover span {
 .service .service-inner {
   position: relative;
   max-width: 1240px;
+  height:120px;
   margin: 0 auto;
   padding: 20px;
 }
-.service .service-inner ul li img {
-  float: left;
-  width: calc(12% - 8px);
-  display: inline-block;
+.service .service-inner ul li{
+    float: left;
+    width: 12%;
+    text-align: center;
+    position:relative;
+}
+.service .service-inner ul li:last-child::before{
+        content: '';
+        width: 1px;
+        height: 72px;
+        background-color: #f0f0f0;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 20px;
+}
+
+.covid{
+    width:100%;
+}
+.covid .covid-inner{
+    position:relative;
+    max-width:1240px;
+    padding:20px;
+    text-align: center;
+    margin:0 auto;
+    background:url('../images/main_visual.png') no-repeat;
+}
+.covid .covid-inner a span{
+    color:#fff;
+}
+.covid .covid-inner a span b{
+    color:#feb400;
+}
+.covid .covid-inner a span .link{
+    float:right;
+}
+
+.sites{
+    position: relative;
+    background-color: #f2f4f5;
+    padding: 30px 0;
+}
+.sites .sites-inner{
+    position:relative;
+    max-width:1240px;
+    margin:0 auto;
+}
+.sites .sites-inner h5{
+    font-size:20px;
+    color:#000;
+}
+.sites .sites-inner > ul{
+    display:inline-block;
+    text-align: center;
+    vertical-align: middle;
+    width:200px;
+    margin-top: 20px;
+}
+.sites .sites-inner > ul li a{
+    color:#fff;
+    font-size: 18px;
+    display: block;
+    min-width: 70px;
+    height: 46px;
+    padding: 0 10px;
+    line-height: 46px;
+    color: #fff;
+}
+.sites .sites-inner > ul li:first-child{
+    background-color: #329bba;
+}
+.sites .sites-inner > ul li:nth-child(2){
+    background-color: #366eae;;
+}
+.sites .sites-inner > ul li:last-child{
+    background-color: #edb54c;
+}
+.sites .sites-inner > div{
+    position:relative;
+    width:83%;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    background-color: #fff;
+    padding: 15px;
+    min-height: 200px;
+    margin-top: 20px;
+    margin-left:-4px;
+}
+.sites .sites-inner > div ul{
+    width:33%;
+    display: inline-block;
+    float: left;
+    border-right:1px solid #ebebeb;
+}
+.sites .sites-inner > div ul li{
+    margin-left:10px;
+}
+.site .sites-inner > div ul li a::after{
+    position: absolute;         
+    top: calc(50% - 1px);
+    left: 0;
+    width: 3px;
+    height: 3px;
+    margin-top: 0;
+    background: #d1d1d1;
+    content: '';
+    border-radius: 100px;
 }
