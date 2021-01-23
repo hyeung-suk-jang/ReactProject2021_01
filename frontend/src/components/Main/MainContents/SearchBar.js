@@ -3,21 +3,29 @@ import { useHistory } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 
 const SearchBar = () => {
-  const history = useHistory()
-  const [product, onChangeProduct, setProduct] = useInput('')
-  const onSearch = useCallback((e) =>{
-    e.preventDefault();
+  const history = useHistory();
+  const [product, onChangeProduct, setProduct] = useInput("");
+  const onSearch = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    console.log(product)
-    history.push(`/detail/${product}`)
-    setProduct('')
-  },[product])
+      console.log(product);
+      history.push(`/detail/${product}`);
+      setProduct("");
+    },
+    [product]
+  );
   return (
     <div className="search">
       <div className="search-inner">
         <form onSubmit={onSearch}>
           <div className="search-box">
-            <input type="text" placeholder="검색어를 입력해주세요." value={product} onChange={onChangeProduct} style={{background:'blue'}}/>
+            <input
+              type="text"
+              placeholder="검색어를 입력해주세요."
+              value={product}
+              onChange={onChangeProduct}
+            />
             <button type="button">다국어입력기</button>
           </div>
           <div>
@@ -31,6 +39,5 @@ const SearchBar = () => {
     </div>
   );
 };
-
 
 export default SearchBar;

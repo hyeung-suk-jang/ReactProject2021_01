@@ -3,6 +3,7 @@ import Home from "./components/Home/Home";
 import { Route, Switch } from "react-router-dom";
 import Login from "./components/Login";
 import Detail from "./components/Detail";
+import "./css/style.css";
 
 function App() {
   return (
