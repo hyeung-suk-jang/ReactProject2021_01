@@ -6,7 +6,8 @@ const LNB = ({ isLoggedIn, history }) => {
   console.log(isLoggedIn);
   const onLogOutClick = () => {
     authService.signOut();
-    history.push;
+    alert('로그아웃 하시겠습니까?')
+    authService.signOut()
   };
 
   return (

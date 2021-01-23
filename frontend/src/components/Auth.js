@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { authService, firebaseInstance } from "../firebase/fb";
 import useInput from "../hooks/useInput";
 
 const Auth = () => {
+  const history = useHistory();
+
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
   const [newAccount, setNewAccount] = useState(false);
@@ -20,6 +23,8 @@ const Auth = () => {
         data = await authService.signInWithEmailAndPassword(email, password);
       }
       console.log(data);
+      history.push("/");
+
     } catch (err) {
       setError(err.message);
     }
