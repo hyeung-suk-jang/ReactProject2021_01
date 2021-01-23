@@ -225,6 +225,9 @@ header .gnb ul li a:hover span {
     text-align: center;
     position:relative;
 }
+.service .service-inner ul li:hover a p{
+    color:#ecb44b;
+}
 .service .service-inner ul li:last-child::before{
         content: '';
         width: 1px;
@@ -298,6 +301,26 @@ header .gnb ul li a:hover span {
 .sites .sites-inner > ul li:last-child{
     background-color: #edb54c;
 }
+.sites .sites-inner > ul li:first-child:hover{
+    border-left:5px solid #329bba;
+    background:#fff;}
+.sites .sites-inner > ul li:first-child:hover a{
+    color:#329bba;
+}
+.sites .sites-inner > ul li:nth-child(2):hover{
+    border-left:5px solid #366eae;
+    background:#fff;
+}
+.sites .sites-inner > ul li:nth-child(2):hover a{
+    color:#366eae;
+}
+.sites .sites-inner > ul li:last-child:hover{
+    border-left:5px solid #edb54c;
+    background:#fff;
+}
+.sites .sites-inner > ul li:last-child:hover{
+    color:#edb54c; 
+}
 .sites .sites-inner > div{
     position:absolute;
     width:83%;
@@ -333,6 +356,9 @@ header .gnb ul li a:hover span {
     background: #d1d1d1;
     content: '';
     border-radius: 100px;
+}
+.site .sites-inner > div ul li a{
+    
 }
 .site .sites-inner > div ul li a::before{
 content: '';
