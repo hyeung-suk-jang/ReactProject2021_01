@@ -18,7 +18,7 @@
 :global .search .search-inner div:nth-child(2) {
   padding: 0 10px;
 }
-:global .search .search-inner button {
+:global .search :global .search-inner button {
   background: transparent;
   color: #fff;
   border-radius: 2px;
@@ -39,9 +39,11 @@
   font-size: 16px;
   color: #fff;
   box-sizing: border-box;
+  background-color: transparent;
+  border: none;
   -webkit-box-sizing: border-box;
 }
-:global .search .search-inner .search-box input::placeholder {
+:global .search .search-inner :global .search-box input::placeholder {
   color: #fff;
   font-size: 20px;
   font-weight: 400;
