@@ -265,6 +265,7 @@ header .gnb ul li a:hover span {
 .sites .sites-inner{
     position:relative;
     max-width:1240px;
+    min-height:300px;
     margin:0 auto;
 }
 .sites .sites-inner h5{
@@ -298,7 +299,7 @@ header .gnb ul li a:hover span {
     background-color: #edb54c;
 }
 .sites .sites-inner > div{
-    position:relative;
+    position:absolute;
     width:83%;
     display: inline-block;
     vertical-align: top;
@@ -315,10 +316,14 @@ header .gnb ul li a:hover span {
     float: left;
     border-right:1px solid #ebebeb;
 }
+.sites .sites-inner > div ul:last-child{
+    border:none;
+}
 .sites .sites-inner > div ul li{
     margin-left:10px;
+    padding:15px;
 }
-.site .sites-inner > div ul li a::after{
+.site .sites-inner > div ul li::before{
     position: absolute;         
     top: calc(50% - 1px);
     left: 0;
@@ -328,4 +333,18 @@ header .gnb ul li a:hover span {
     background: #d1d1d1;
     content: '';
     border-radius: 100px;
+}
+.site .sites-inner > div ul li a::before{
+content: '';
+position: absolute;
+bottom: -3px;
+left: 50%;
+width: 0px;
+height: 2px;
+background-color: #D99000;
+border-radius: 100px;
+transition: all .38s ease-in-out;
+-ms-transform: translateX(-50%);
+-webkit-transform: translateX(-50%);
+transform: translateX(-50%);
 }
