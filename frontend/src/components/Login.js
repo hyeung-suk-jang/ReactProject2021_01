@@ -1,13 +1,13 @@
-import React from 'react'
-import Auth from '../Routes/Auth'
-import Layout from './Layout/Layout'
+import React from "react";
+import Auth from "../components/Auth";
+import Layout from "./Layout/Layout";
 
 const Login = () => {
-    return (
-        <Layout>
-            <Auth />
-        </Layout>
-    )
-}
+  return (
+    <Layout>
+      <Auth />
+    </Layout>
+  );
+};
 
-export default Login
+export default Login;

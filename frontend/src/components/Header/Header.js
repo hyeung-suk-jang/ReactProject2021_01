@@ -4,10 +4,10 @@ import GNB from "./Navigation/GNB";
 import HeaderLogo from "./Navigation/HeaderLogo";
 import styles from "./Header.module.css";
 
-const Header = ({isLoggedIn}) => (
+const Header = ({ isLoggedIn, history }) => (
   <div className={styles.headerWrapper}>
     <header>
-      <LNB className={styles.lnb} isLoggedIn={isLoggedIn} />
+      <LNB className={styles.lnb} isLoggedIn={isLoggedIn} history={history} />
       <HeaderLogo className={styles.logo} />
       <GNB className={styles.gnb} />
       {/* <div class="library_info">

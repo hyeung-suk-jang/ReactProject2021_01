@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { authService } from "../../../firebase/fb";
 
-const LNB = ({ isLoggedIn }) => {
+const LNB = ({ isLoggedIn, history }) => {
   console.log(isLoggedIn);
   const onLogOutClick = () => {
-    authService.signOut()
-    // history.push('/')
+    authService.signOut();
+    history.push;
   };
 
   return (
@@ -14,11 +14,9 @@ const LNB = ({ isLoggedIn }) => {
       <ul className="">
         {isLoggedIn ? (
           <>
-          <li>
-            <button onClick={onLogOutClick}>
-              LogOut
-            </button>
-          </li>
+            <li>
+              <button onClick={onLogOutClick}>LogOut</button>
+            </li>
             <li>
               <Link to="/">
                 <a>Dummy님(로그아웃)</a>

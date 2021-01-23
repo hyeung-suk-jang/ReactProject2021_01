@@ -2,10 +2,10 @@ import React from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 
-const Home = () => (
+const Home = ({ history }) => (
   <>
-    <Header />
-    <Main />
+    <Header history={history} />
+    <Main history={history} />
   </>
 );
 
