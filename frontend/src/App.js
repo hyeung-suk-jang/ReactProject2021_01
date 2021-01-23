@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Layout from "./components/Layout/Layout";
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
-import AppRouter from "./components/Router";
-import { authService } from "./firebase/fb";
-import { useHistory } from "react-router-dom";
+import Home from "./components/Home/Home";
+import { Route, Switch } from "react-router-dom";
+import Login from "./components/Login";
 
 function App() {
-  const history = useHistory()
+  const history = useHistory();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // console.log(authService.currentUser);
@@ -18,19 +15,20 @@ function App() {
     authService.onAuthStateChanged((user) => {
       if (user) {
         setIsLoggedIn(true);
-        history.push('/')
+        history.push("/");
       } else {
         setIsLoggedIn(false);
       }
       // setInit(true);
     });
-  }, []);  // 로그인 아웃 여부 판단
+  }, []); // 로그인 아웃 여부 판단
   return (
     <div>
       <Layout>
-        <Header isLoggedIn={isLoggedIn}/>
-        <AppRouter />
-        <Main />
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/login" component={Login} />
+        </Switch>
       </Layout>
     </div>
   );
