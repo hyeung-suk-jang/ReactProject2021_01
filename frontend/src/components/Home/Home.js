@@ -16,11 +16,13 @@ const Home = ({ history }) => {
       // setInit(true);
     });
   }, []); // 로그인 아웃 여부 판단
-  return(
-  <>
-    <Header history={history} isLoggedIn={isLoggedIn}/>
-    <Main history={history} />
-  </>)
+
+  return (
+    <>
+      <Header history={history} isLoggedIn={isLoggedIn} />
+      <Main history={history} />
+    </>
+  );
 };
 
 export default Home;
