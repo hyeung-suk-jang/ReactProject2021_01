@@ -47,7 +47,11 @@ const Sites = () => {
             </Link>
           </li>
         </ul>
-        <div className="open">
+        <div
+          className={
+            sites.open && sites.category === "일반사용자" ? "open" : "close"
+          }
+        >
           <div>
             <ul>
               <li>
