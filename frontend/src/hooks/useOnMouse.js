@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-const useOnMouse = () => {
-  const [tabOpen, setTabOpen] = useState(false);
-  const [category, setCategory] = useState();
+const useOnMouse = (initState, initCategory) => {
+  const [tabOpen, setTabOpen] = useState(initState);
+  const [category, setCategory] = useState(initCategory);
 
   const onMouseHandler = (isOpen, categoryName) => {
     setTabOpen(isOpen);

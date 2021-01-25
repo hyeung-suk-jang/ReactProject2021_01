@@ -7,7 +7,7 @@ import SearchDoc from "./GNB_Items/SearchDoc";
 import useOnMouse from "../../../hooks/useOnMouse";
 
 const GNB = () => {
-  const [depth2, setDepth2] = useOnMouse();
+  const [depth2, setDepth2] = useOnMouse(false, null);
 
   console.log("gnb");
   return (

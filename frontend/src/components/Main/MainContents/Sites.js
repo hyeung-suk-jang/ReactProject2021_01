@@ -1,130 +1,223 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import useOnMouse from "../../../hooks/useOnMouse";
 
-const Sites = () => (
-  <div className="sites">
-    <div className="sites-inner">
-      <h5>관내 사이트</h5>
-      <ul>
-        <li>
-          <a href="">일반이용자</a>
-        </li>
-        <li>
-          <a href="">서서 &middot; 연구자</a>
-        </li>
-        <li>
-          <a href="">출판사</a>
-        </li>
-      </ul>
-      <div>
-        <div>
-          <ul>
-            <li>
-              <a href="">국가자료종합목록</a>
-            </li>
-            <li>
-              <a href="">도서관 정보 나루</a>
-            </li>
-            <li>
-              <a href="">인문열차, 삶을 달리다</a>
-            </li>
-            <li>
-              <a href="">한국고전적종합목록시스템</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">국가전자도서관</a>
-            </li>
-            <li>
-              <a href="">북한자료센터</a>
-            </li>
-            <li>
-              <a href="">책바다(국가상호대차)</a>
-            </li>
-            <li>
-              <a href="">ISNI-KOREA</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">대한민국신문아카이브</a>
-            </li>
-            <li>
-              <a href="">웹자원검색(OASIS)</a>
-            </li>
-            <li>
-              <a href="">책이음</a>
-            </li>
-          </ul>
+const Sites = () => {
+  const [sites, setSites] = useOnMouse(true, "일반사용자");
+  return (
+    <div className="sites">
+      <div className="sites-inner">
+        <h5>관내 사이트</h5>
+        <ul className="tab">
+          <li
+            className={
+              sites.category === "일반사용자" ? "clicked_general" : null
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              setSites(true, "일반사용자");
+            }}
+          >
+            <Link to="/">
+              <span>일반이용자</span>
+            </Link>
+          </li>
+          <li
+            className={
+              sites.category === "사서/연구자" ? "clicked_researcher" : null
+            }
+            onClick={(e) => {
+              e.preventDefault();
+              setSites(true, "사서/연구자");
+            }}
+          >
+            <Link to="/">
+              <span>사서 &middot; 연구자</span>
+            </Link>
+          </li>
+          <li
+            className={sites.category === "출판사" ? "clicked_publisher" : null}
+            onClick={(e) => {
+              e.preventDefault();
+              setSites(true, "출판사");
+            }}
+          >
+            <Link to="/">
+              <span>출판사</span>
+            </Link>
+          </li>
+        </ul>
+        <div className="open">
+          <div>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span>국가자료종합목록</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>도서관 정보 나루</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>인문열차, 삶을 달리다</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>한국고전적종합목록시스템</span>
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span>국가전자도서관</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>북한자료센터</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>책바다(국가상호대차)</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>ISNI-KOREA</span>
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span>대한민국신문아카이브</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>웹자원검색(OASIS)</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>책이음</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div>
-        <div>
-          <ul>
-            <li>
-              <a href="">사서지원서비스 </a>
-            </li>
-            <li>
-              <a href="">도서관 부호 신청</a>
-            </li>
-            <li>
-              <a href="">서사교육</a>
-            </li>
-            <li>
-              <a href="">Open Access Korea 포털</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">연구정보서비스</a>
-            </li>
-            <li>
-              <a href="">도서관 정보 나루</a>
-            </li>
-            <li>
-              <a href="">정책정보 서비스</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">공공도서관 기술정보센터</a>
-            </li>
-            <li>
-              <a href="">링크드로픈데이터(LOD)</a>
-            </li>
-            <li>
-              <a href="">한국학사서 글로벌 네트워크</a>
-            </li>
-          </ul>
+        <div
+          className={
+            sites.open && sites.category === "사서/연구자" ? "open" : "close"
+          }
+        >
+          <div>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span>사서지원서비스</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>도서관 부호 신청</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>서사교육</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>Open Access Korea 포털</span>
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span>연구정보서비스</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>도서관 정보 나루</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>정책정보 서비스</span>
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span>공공도서관 기술정보센터</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>링크드로픈데이터(LOD)</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>한국학사서 글로벌 네트워크</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div>
-        <div>
-          <ul>
-            <li>
-              <a href="">납본신청</a>
-            </li>
-            <li>
-              <a href="">온라인자료 납본</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">도서관 정보 나루</a>
-            </li>
-            <li>
-              <a href="">한국문헌번호센터ISBN/ISSN</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a href="">서지정보유통지원시스템</a>
-            </li>
-          </ul>
+        <div
+          className={
+            sites.open && sites.category === "출판사" ? "open" : "close"
+          }
+        >
+          <div>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span>납본신청</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>온라인자료 납본</span>
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span>도서관 정보 나루</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/">
+                  <span>한국문헌번호센터ISBN/ISSN</span>
+                </Link>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <Link to="/">
+                  <span>서지정보유통지원시스템</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Sites;
