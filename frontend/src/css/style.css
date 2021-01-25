@@ -653,7 +653,7 @@ header .gnb ul li .a_on span {
 .public {
   width: 100%;
   padding: 50px 0;
-  background: url("../assets/images/main_visual.png") 0 0 repeat,
+  background: url("../assets/images/public_bg.png") 0 0 repeat,
     linear-gradient(-45deg, #3669ac, #329bba);
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
