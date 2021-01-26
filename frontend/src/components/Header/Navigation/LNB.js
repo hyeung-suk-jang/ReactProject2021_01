@@ -1,19 +1,23 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { authService } from "../../../firebase/fb";
+import { LOG_OUT_REQUEST } from "../../../reducers/user";
 
-const LNB = ({ isLoggedIn, history }) => {
-  console.log(isLoggedIn);
+const LNB = () => {
+  const dispatch = useDispatch()
+  const {me} = useSelector(state => state.user)
   const onLogOutClick = () => {
-    authService.signOut();
+    // authService.signOut();
     alert("로그아웃 하시겠습니까?");
-    authService.signOut();
+    // authService.signOut();
+    dispatch({type: LOG_OUT_REQUEST})
   };
 
   return (
     <nav className="lnb">
       <ul className="">
-        {isLoggedIn ? (
+        {me ? (
           <>
             <li>
               <button onClick={onLogOutClick}>LogOut</button>

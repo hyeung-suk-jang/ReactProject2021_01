@@ -27,6 +27,22 @@ const Detail = () => {
           fetchBook();
     },[])
 
+    // const dummy = {
+    //     root:{
+    //         result:{
+    //             item:[
+    //                 {id:1,
+    //                 title:'DummyTitle',
+    //                 author:'DummyAuthor',
+    //                 year:2021,
+    //                 reg_date:1991,
+    //                 pub: 'DummyPub',
+    //                 call:'Dummy-ddddd',
+    //                 place:'DummyPlace'}
+    //             ]
+    //         }
+    //     }
+    // }
 
     if(!loading){
         return(
@@ -38,6 +54,9 @@ const Detail = () => {
             <div>
                 {data.root.result.item.map((i)=><Books detail={i} key={i.id._text}/>)}
             </div>
+            // <div>
+            //     {dummy.root.result.item.map((i)=><Books detail={i} key={i.id}/>)}
+            // </div>
         )
     }
 }

@@ -7,3 +7,29 @@
 # 기능
     책 정보
     대출하기
+
+
+```javascript
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(loginRequestAction({ email, password }));
+
+    try {
+      let data;
+      if (newAccount) {
+        data = await authService.createUserWithEmailAndPassword(
+          email,
+          password
+        );
+      } else {
+        data = await authService.signInWithEmailAndPassword(email, password);
+      }
+      console.log(data);
+      history.push("/");
+
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+// 파베로그인 로직
+```

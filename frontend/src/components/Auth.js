@@ -1,48 +1,42 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { authService, firebaseInstance } from "../firebase/fb";
 import useInput from "../hooks/useInput";
+import { LOG_IN_REQUEST } from "../reducers/user";
 
 const Auth = () => {
-  const history = useHistory();
-
+  const history = useHistory()
+  const dispatch = useDispatch();
+  const { me } = useSelector((state) => state.user)
   const [email, onChangeEmail] = useInput("");
   const [password, onChangePassword] = useInput("");
   const [newAccount, setNewAccount] = useState(false);
   const [error, setError] = useState("");
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      let data;
-      if (newAccount) {
-        data = await authService.createUserWithEmailAndPassword(
-          email,
-          password
-        );
-      } else {
-        data = await authService.signInWithEmailAndPassword(email, password);
-      }
-      console.log(data);
-      history.push("/");
 
-    } catch (err) {
-      setError(err.message);
-    }
+
+  if(me){
+    history.push("/");
+  }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // dispatch(loginRequestAction({ email, password }));
+    dispatch({ type: LOG_IN_REQUEST, data:{email:email, password:password} });
   };
 
   const toggleAccount = () => setNewAccount((prev) => !prev);
-  const onSocialClick = async (e) => {
-    const {
-      target: { name },
-    } = e;
-    console.log(name);
-    let provider;
-    if (name === "google") {
-      provider = new firebaseInstance.auth.GoogleAuthProvider();
-    }
-    const data = await authService.signInWithPopup(provider);
-    console.log(data);
-  };
+  // const onSocialClick = async (e) => {
+  //   const {
+  //     target: { name },
+  //   } = e;
+  //   console.log(name);
+  //   let provider;
+  //   if (name === "google") {
+  //     provider = new firebaseInstance.auth.GoogleAuthProvider();
+  //   }
+  //   const data = await authService.signInWithPopup(provider);
+  //   console.log(data);
+  // };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -67,7 +61,7 @@ const Auth = () => {
       </form>
       <span onClick={toggleAccount}> {newAccount ? "Login" : "Sigin in"}</span>
       <div>
-        <button type="button" name="google" onClick={onSocialClick}>
+        <button type="button" name="google" onClick={()=>{alert('준비중..')}}>
           {" "}
           Continue With Google{" "}
         </button>
