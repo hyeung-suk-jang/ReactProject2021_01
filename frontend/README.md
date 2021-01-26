@@ -1,4 +1,5 @@
 # 국립중앙도서관 Clone
+    20210126 모듈 설치해서 push했으니까 pull받으시고 꼭 npm install 해주세요!
 ## URL: https://www.nl.go.kr/
 
 # 로그인 방식
