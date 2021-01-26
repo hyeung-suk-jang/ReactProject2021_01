@@ -35,7 +35,9 @@ const LNB = ({ isLoggedIn, history }) => {
               </Link>
             </li>
             <li>
-              <span>회원가입</span>
+              <Link to="/signup">
+                <span>회원가입</span>
+              </Link>
             </li>
           </>
         )}{" "}

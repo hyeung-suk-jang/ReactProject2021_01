@@ -1,0 +1,52 @@
+.signUp {
+  position: relative;
+  width: 70%;
+  height: auto;
+  margin: 0 auto;
+  padding: 5px;
+  font-size: 0.7rem;
+  border: 1px solid black;
+}
+
+.signUp .wrapper {
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px solid #555;
+}
+
+.signUp .wrapper span {
+  padding-left: 10px;
+}
+
+.signUp .wrapper:nth-of-type(8) {
+  padding: 10px 0 60px;
+}
+
+.signUp .wrapper:nth-of-type(9) {
+  padding: 10px 0 120px;
+}
+
+.signUp .wrapper .input {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 170px;
+}
+
+.signUp .wrapper .input span {
+  font-size: 11px;
+  color: green;
+}
+
+.signUp form .submit {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 150%);
+}
+
+.signUp .input input {
+  border: 1px solid black;
+  height: auto;
+  width: auto;
+}
