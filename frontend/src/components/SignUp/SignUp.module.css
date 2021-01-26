@@ -14,6 +14,10 @@
   border-bottom: 1px solid #555;
 }
 
+.signUp .wrapper:last-of-type {
+  border-bottom: none;
+}
+
 .signUp .wrapper span {
   padding-left: 10px;
 }

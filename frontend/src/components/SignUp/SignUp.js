@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./SignUp.module.css";
+import useSignUp from "../../hooks/SignUp/useSignUp";
 
 const SignUp = () => {
+  const [value, setValue] = useSignUp("");
+
   return (
     <div className={styles.signUp}>
       <form>
@@ -9,14 +12,26 @@ const SignUp = () => {
         <div className={styles.wrapper}>
           <span>*성명</span>
           <div className={styles.input}>
-            <input type="text" name="name" value="" required />
+            <input
+              type="text"
+              name="name"
+              value={value.name}
+              onChange={setValue}
+              required
+            />
           </div>
         </div>
         {/*생년월일*/}
         <div className={styles.wrapper}>
           <span>*생년월일</span>
           <div className={styles.input}>
-            <input type="number" name="birth" value="" required />
+            <input
+              type="number"
+              name="birth"
+              value={value.birth}
+              onChange={setValue}
+              required
+            />
           </div>
         </div>
         {/*성별(선택)*/}
@@ -24,11 +39,29 @@ const SignUp = () => {
           <span>*성별(선택)</span>
           <div className={styles.input}>
             <label htmlFor="male">남</label>
-            <input id="male" type="radio" name="gender" value="male" />
+            <input
+              id="male"
+              type="radio"
+              name="gender"
+              value="male"
+              onChange={setValue}
+            />
             <label htmlFor="female">여</label>
-            <input id="female" type="radio" name="gender" value="female" />
+            <input
+              id="female"
+              type="radio"
+              name="gender"
+              value="female"
+              onChange={setValue}
+            />
             <label htmlFor="reject">미동의</label>
-            <input id="reject" type="radio" name="gender" value="reject" />
+            <input
+              id="reject"
+              type="radio"
+              name="gender"
+              value="reject"
+              onChange={setValue}
+            />
           </div>
         </div>
         {/*회원 ID */}
@@ -38,8 +71,10 @@ const SignUp = () => {
             <input
               type="text"
               name="ID"
-              value=""
-              /*pattern="6~12자리의 영문 또는 숫자 혼용, 특수문자 제외"*/ required
+              value={value.ID}
+              /*pattern="6~12자리의 영문 또는 숫자 혼용, 특수문자 제외"*/
+              onChange={setValue}
+              required
             />
             <button type="click" disabled={false}>
               중복확인
@@ -53,9 +88,11 @@ const SignUp = () => {
           <div className={styles.input}>
             <input
               type="password"
-              name="Password"
-              value=""
-              /*pattern=""*/ required
+              name="password"
+              value={value.password}
+              /*pattern=""*/
+              onChange={setValue}
+              required
             />
             <span>
               *비밀번호는 10~16자리의 영문/숫자 또는 영문/숫자/특수문자[{""}
@@ -69,9 +106,10 @@ const SignUp = () => {
           <div className={styles.input}>
             <input
               type="password"
-              name="PasswordCheck"
-              value=""
+              name="passwordCheck"
+              value={value.passwordCheck}
               /*pattern=""*/
+              onChange={setValue}
               required
             />
           </div>
@@ -81,7 +119,13 @@ const SignUp = () => {
           <span>*우편번호</span>
           <div className={styles.input}>
             {" "}
-            <input type="text" name="address" value="" required />
+            <input
+              type="text"
+              name="address"
+              value={value.address}
+              onChange={setValue}
+              required
+            />
             <button type="click">도로명주소 찾기</button>
           </div>
         </div>
@@ -89,8 +133,22 @@ const SignUp = () => {
         <div className={styles.wrapper}>
           <span>*주소</span>
           <div className={styles.input}>
-            <input type="text" name="address_detail" size="50" required />
-            <input type="text" name="address_detail" size="50" required />
+            <input
+              type="text"
+              name="address_detail"
+              size="50"
+              value={value.address_detail}
+              onChange={setValue}
+              required
+            />
+            <input
+              type="text"
+              name="address_detail"
+              size="50"
+              value={value.address_detail2}
+              onChange={setValue}
+              required
+            />
             <span>*나머지 주소를 입력하세요.</span>
           </div>
         </div>
@@ -98,7 +156,7 @@ const SignUp = () => {
         <div className={styles.wrapper}>
           <span>*연락처</span>
           <div className={styles.input}>
-            <select name="tel_first" required>
+            <select name="tel_first" required onChange={setValue}>
               <option value={null}>선택</option>
               <option value="02">02</option>
               <option value="032">032</option>
@@ -107,9 +165,23 @@ const SignUp = () => {
               <option value="012">012</option>
             </select>
             -
-            <input type="number" name="tel_second" value="" size="4" required />
+            <input
+              type="number"
+              name="tel_middle"
+              value={value.tel_middle}
+              size="4"
+              onChange={setValue}
+              required
+            />
             -
-            <input type="number" name="tel_last" value="" size="4" required />
+            <input
+              type="number"
+              name="tel_last"
+              value={value.tel_last}
+              size="4"
+              onChange={setValue}
+              required
+            />
             <span>
               *전화번호 또는 휴대전화번호 중 하나를 입력하셔야 합니다.
             </span>
@@ -133,7 +205,14 @@ const SignUp = () => {
         <div className={styles.wrapper}>
           <span>*이메일 주소</span>
           <div className={styles.input}>
-            <input type="text" name="email" value="" required />@
+            <input
+              type="text"
+              name="email"
+              value={value.email}
+              onChange={setValue}
+              required
+            />
+            @
             <select name="text" required>
               <option value={null}>선택하세요</option>
               <option value="naver">naver.com</option>
@@ -147,16 +226,18 @@ const SignUp = () => {
             <input
               id="general"
               type="radio"
-              name="registration-type"
+              name="userType"
               value="general"
+              onChange={setValue}
             />
             <label htmlFor="general">일반회원</label>
             <span className="public-officer">
               <input
                 id="public"
                 type="radio"
-                name="registration-type"
+                name="userType"
                 value="public"
+                onChange={setValue}
               />
               <label htmlFor="public">정책회원</label>
               <span>
@@ -164,14 +245,16 @@ const SignUp = () => {
                 <input
                   id="individual"
                   type="radio"
-                  name="registration-type"
-                  value="individual"
+                  name="userType"
+                  value="public-individual"
+                  onChange={setValue}
                 />
                 <label htmlFor="individual">공무원</label>
                 <input
                   type="radio"
-                  name="registration-type"
-                  value="institution"
+                  name="userType"
+                  value="public-institution"
+                  onChange={setValue}
                 />
                 <label htmlFor="institution">
                   공공기관(일부 정부 부처 포함)
@@ -185,7 +268,7 @@ const SignUp = () => {
         <div className={styles.wrapper}>
           <span>*SMS 통보여부(선택)</span>
           <div className={styles.input}>
-            <input id="sms" type="checkbox" name="sms" />
+            <input id="sms" type="checkbox" name="sms" onChange={setValue} />
             <label htmlFor="sms">SMS통보 신청</label>
             <span>*신청결과를 휴대전화번호로 알려드립니다</span>
           </div>
