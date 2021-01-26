@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { xml2json } from 'xml-js';
 import Books from './Books';
+// http://seoji.nl.go.kr/landingPage/SearchApi.do?page_no=1&title=%EC%95%84%EB%B2%84%EC%A7%80&start_publish_date=20170207&end_publish_date=20170406
 
 const Detail = () => {
     const {product} = useParams()
