@@ -26,17 +26,11 @@ const Public = () => (
                   <strong className="month">2021년 01월</strong>
                 </button>
                 <div className="controller">
-                  <button
-                    onClick="fn_changeMonth(&#39;0&#39;); return false;"
-                    className="btn btn_prev"
-                  >
+                  <button onClick={() => {}} className="btn btn_prev">
                     <span className="sp_main">이전</span>
                     12월
                   </button>
-                  <button
-                    onClick="fn_changeMonth(&#39;1&#39;); return false;"
-                    className="btn btn_next"
-                  >
+                  <button onClick={() => {}} className="btn btn_next">
                     02월
                     <span className="sp_main">다음</span>
                   </button>

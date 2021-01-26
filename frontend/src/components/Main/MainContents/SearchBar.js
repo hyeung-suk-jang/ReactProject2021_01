@@ -8,8 +8,6 @@ const SearchBar = () => {
   const onSearch = useCallback(
     (e) => {
       e.preventDefault();
-
-      console.log(product);
       history.push(`/detail/${product}`);
       setProduct("");
     },
