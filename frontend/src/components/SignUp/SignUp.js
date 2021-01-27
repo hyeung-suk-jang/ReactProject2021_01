@@ -3,7 +3,7 @@ import styles from "./SignUp.module.css";
 import useSignUp from "../../hooks/SignUp/useSignUp";
 
 const SignUp = () => {
-  const [value, setValue, setIdValid] = useSignUp("");
+  const [value, setValue /*setIdValidation */] = useSignUp("");
 
   return (
     <div className={styles.signUp}>
@@ -78,8 +78,8 @@ const SignUp = () => {
             />
             <button
               type="click"
-              onClick={setIdValid}
-              disabled={value.IdValidated}
+              onClick={() => {}}
+              // disabled={value.idAvailable ? true : false}
             >
               중복확인
             </button>
