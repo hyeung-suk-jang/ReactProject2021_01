@@ -26,7 +26,7 @@ const SignUp = () => {
           <span>*생년월일</span>
           <div className={styles.input}>
             <input
-              type="number"
+              type="text"
               name="birth"
               value={value.birth}
               onChange={setValue}
@@ -72,7 +72,7 @@ const SignUp = () => {
               type="text"
               name="ID"
               value={value.ID}
-              /*pattern="6~12자리의 영문 또는 숫자 혼용, 특수문자 제외"*/
+              pattern="(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,12}"
               onChange={setValue}
               required
             />
@@ -90,13 +90,13 @@ const SignUp = () => {
               type="password"
               name="password"
               value={value.password}
-              /*pattern=""*/
+              pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{10,16}"
               onChange={setValue}
               required
             />
             <span>
-              *비밀번호는 10~16자리의 영문/숫자 또는 영문/숫자/특수문자[{""}
-              !@#$%^&*(){""}]혼용
+              *비밀번호는 10~16자리의 영문/숫자 또는 영문/숫자/특수문자[
+              !@#$%^&*()]혼용
             </span>
           </div>
         </div>
@@ -143,7 +143,7 @@ const SignUp = () => {
             />
             <input
               type="text"
-              name="address_detail"
+              name="address_detail2"
               size="50"
               value={value.address_detail2}
               onChange={setValue}
@@ -166,18 +166,20 @@ const SignUp = () => {
             </select>
             -
             <input
-              type="number"
+              type="tel"
               name="tel_middle"
               value={value.tel_middle}
+              /*pattern="" */
               size="4"
               onChange={setValue}
               required
             />
             -
             <input
-              type="number"
+              type="tel"
               name="tel_last"
               value={value.tel_last}
+              /*pattern="" */
               size="4"
               onChange={setValue}
               required
@@ -213,7 +215,7 @@ const SignUp = () => {
               required
             />
             @
-            <select name="text" required>
+            <select name="emailDomain" onChange={setValue} required>
               <option value={null}>선택하세요</option>
               <option value="naver">naver.com</option>
             </select>

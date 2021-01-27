@@ -14,11 +14,31 @@ const useSignUp = (initValue) => {
   const [tel_middle, setTelMiddle] = useState(initValue);
   const [tel_last, setTelLast] = useState(initValue);
   const [email, setEmail] = useState(initValue);
+  const [emailDomain, setEmailDomain] = useState(initValue);
   const [userType, setUserType] = useState(null);
   const [sms, setSMS] = useState(false);
 
+  console.log(
+    name,
+    birth,
+    gender,
+    ID,
+    password,
+    passwordCheck,
+    address,
+    address_detail,
+    address_detail2,
+    tel_first,
+    tel_middle,
+    tel_last,
+    email,
+    emailDomain,
+    userType,
+    sms
+  );
+
   const onChangeHandler = (e) => {
-    const { value, name, type } = e.target;
+    const { value, name, checked } = e.target;
     switch (name) {
       case "name":
         setName(value);
@@ -59,11 +79,14 @@ const useSignUp = (initValue) => {
       case "email":
         setEmail(value);
         break;
+      case "emailDomain":
+        setEmailDomain(value);
+        break;
       case "userType":
         setUserType(value);
         break;
       case "sms":
-        setSMS(value);
+        setSMS(checked);
         break;
       default:
         return "";
