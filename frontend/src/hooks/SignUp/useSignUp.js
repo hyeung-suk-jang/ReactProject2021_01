@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { debounce } from "lodash";
 
 const useSignUp = (initValue) => {
   const [name, setName] = useState(initValue);
@@ -17,6 +18,9 @@ const useSignUp = (initValue) => {
   const [emailDomain, setEmailDomain] = useState(initValue);
   const [userType, setUserType] = useState(null);
   const [sms, setSMS] = useState(false);
+  const [pwValidated, setPwValidated] = useState(false);
+  const [birthValidated, setBirthValidated] = useState(false);
+  const [IdValidated, setIdValidated] = useState(false);
 
   console.log(
     name,
@@ -34,8 +38,51 @@ const useSignUp = (initValue) => {
     email,
     emailDomain,
     userType,
-    sms
+    sms,
+    "passwordPassed :",
+    pwValidated,
+    birthValidated,
+    IdValidated
   );
+
+  const IdValidator = () => {
+    if (ID) {
+      //회원정보 불러와서 해당 ID 있는지 검사하기.
+    }
+    setIdValidator(checked);
+  };
+
+  const passwordValidator = debounce((value) => {
+    password && password === value
+      ? setPwValidated(true)
+      : setPwValidated(false);
+  }, 1000);
+
+  const birthValidator = debounce((val) => {
+    if (val.length === 8) {
+      const regex_date = /^\d{4}\d{1,2}\d{1,2}$/;
+      // Check the pattern
+      if (!regex_date.test(val)) {
+        setBirthValidated(false);
+      }
+      const year = val[0] + val[1] + val[2] + val[3];
+      const month = val[4] + val[5];
+      const day = val[6] + val[7];
+      var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      // Check the ranges of month and year
+      if (year < 1000 || year > 3000 || month == 0 || month > 12) {
+        setBirthValidated(false);
+      }
+      // Adjust for leap years
+      if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+        monthLength[1] = 29;
+      }
+      // Check the range of the day
+      setBirthValidated(day > 0 && day <= monthLength[month - 1]);
+    } else {
+      return;
+    }
+  }, 500);
 
   const onChangeHandler = (e) => {
     const { value, name, checked } = e.target;
@@ -45,6 +92,7 @@ const useSignUp = (initValue) => {
         break;
       case "birth":
         setBirth(value);
+        birthValidator(value);
         break;
       case "gender":
         setGender(value);
@@ -57,6 +105,7 @@ const useSignUp = (initValue) => {
         break;
       case "passwordCheck":
         setPasswordCheck(value);
+        passwordCheck && passwordValidator(value);
         break;
       case "address":
         setAddress(value);
@@ -110,8 +159,12 @@ const useSignUp = (initValue) => {
       email: email,
       userType: userType,
       sms: sms,
+      pwValidated: pwValidated,
+      birthValidated: birthValidated,
+      IdValidated: IdValidated,
     },
     onChangeHandler,
+    IdValidator,
   ];
 };
 

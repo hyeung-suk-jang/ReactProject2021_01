@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./SignUp.module.css";
 import useSignUp from "../../hooks/SignUp/useSignUp";
 
 const SignUp = () => {
-  const [value, setValue] = useSignUp("");
+  const [value, setValue, setIdValid] = useSignUp("");
 
   return (
     <div className={styles.signUp}>
@@ -76,7 +76,11 @@ const SignUp = () => {
               onChange={setValue}
               required
             />
-            <button type="click" disabled={false}>
+            <button
+              type="click"
+              onClick={setIdValid}
+              disabled={value.IdValidated}
+            >
               중복확인
             </button>
             <span>*아이디는 6~12자리의 영문 또는 숫자 혼용, 특수문자 제외</span>
@@ -108,7 +112,7 @@ const SignUp = () => {
               type="password"
               name="passwordCheck"
               value={value.passwordCheck}
-              /*pattern=""*/
+              pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{10,16}"
               onChange={setValue}
               required
             />
