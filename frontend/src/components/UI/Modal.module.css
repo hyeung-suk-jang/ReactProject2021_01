@@ -17,7 +17,7 @@
 .Modal_hide {
   position: fixed;
   opacity: 0;
-  z-index: 500;
+  z-index: -500;
   background-color: white;
   width: 70%;
   border: 1px solid #ccc;

@@ -143,6 +143,61 @@ const useSignUp = (initValue) => {
     }
   };
 
+  const initInput = (type) => {
+    switch (type) {
+      case "name":
+        setName(initValue);
+        break;
+      case "birth":
+        setBirth(initValue);
+        break;
+      case "gender":
+        setGender(null);
+        break;
+      case "ID":
+        setID(initValue);
+        break;
+      case "password":
+        setPassword(initValue);
+        break;
+      case "passwordCheck":
+        setPasswordCheck(initValue);
+        break;
+      case "address":
+        setAddress(initValue);
+        break;
+      case "address_detail":
+        setAddressDetail(initValue);
+        break;
+      case "address_detail2":
+        setAddressDetail2(initValue);
+        break;
+      case "tel_first":
+        setTelFirst(initValue);
+        break;
+      case "tel_middle":
+        setTelMiddle(initValue);
+        break;
+      case "tel_last":
+        setTelLast(initValue);
+        break;
+      case "email":
+        setEmail(initValue);
+        break;
+      case "emailDomain":
+        setEmailDomain(initValue);
+        break;
+      case "userType":
+        setUserType(null);
+        break;
+      case "sms":
+        setSMS(false);
+        break;
+      default:
+        return "";
+    }
+  };
+
   return [
     {
       name: name,
@@ -165,6 +220,7 @@ const useSignUp = (initValue) => {
     },
     onChangeHandler,
     IdValidator,
+    initInput,
   ];
 };
 

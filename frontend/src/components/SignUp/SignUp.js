@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { debounce } from "lodash";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from "./SignUp.module.css";
 import useSignUp from "../../hooks/SignUp/useSignUp";
@@ -9,7 +8,13 @@ import Modal from "../UI/Modal";
 const SignUp = () => {
   const { idAvailable } = useSelector((state) => state.user);
   const [open, openModal, closeModal] = useModal(null);
-  const [value, setValue, setIdAvailable] = useSignUp("");
+  const [value, setValue, setIdAvailable, initInput] = useSignUp("");
+
+  useEffect(() => {
+    idAvailable === false && initInput("ID");
+  }, [open]);
+
+  console.log(value.ID);
 
   const onIdCheck = () => {
     setIdAvailable();
