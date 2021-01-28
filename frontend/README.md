@@ -34,3 +34,24 @@
   };
 // 파베로그인 로직
 ```
+
+```javascript
+    useEffect(()=>{
+        const fetchBook = async () => {
+            //setLoading(true)
+            try {
+              await axios.get(`https://www.nl.go.kr/NL/search/openApi/search.do?key=${process.env.REACT_APP_NL_API_KEY}&kwd=${product}`)
+              .then(function(response){
+                setData(JSON.parse(xml2json(response.data, { compact: true, spaces: 4 })));
+              });
+              
+            } catch (e) {
+              console.error(e);
+            }
+            setLoading(true);
+
+        }
+          fetchBook();
+    },[])
+// data fetchig후 변환
+```

@@ -2,12 +2,14 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 
+
 const SearchBar = () => {
   const history = useHistory();
   const [product, onChangeProduct, setProduct] = useInput("");
   const onSearch = useCallback(
     (e) => {
       e.preventDefault();
+
       history.push(`/detail/${product}`);
       setProduct("");
     },
