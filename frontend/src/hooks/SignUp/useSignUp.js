@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { debounce } from "lodash";
 import { useDispatch } from "react-redux";
 import { idCheckRequestAction } from "../../reducers/user";
@@ -20,8 +20,8 @@ const useSignUp = (initValue) => {
   const [emailDomain, setEmailDomain] = useState(initValue);
   const [userType, setUserType] = useState(null);
   const [sms, setSMS] = useState(false);
-  const [pwValidated, setPwValidated] = useState(false);
-  const [birthValidated, setBirthValidated] = useState(false);
+  const [pwValidated, setPwValidated] = useState(null);
+  const [birthValidated, setBirthValidated] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -81,7 +81,7 @@ const useSignUp = (initValue) => {
       // Check the range of the day
       setBirthValidated(day > 0 && day <= monthLength[month - 1]);
     } else {
-      return;
+      setBirthValidated(false);
     }
   }, 500);
 

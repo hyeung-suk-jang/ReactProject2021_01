@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./SignUp.module.css";
 import useSignUp from "../../hooks/SignUp/useSignUp";
@@ -9,9 +9,12 @@ const SignUp = () => {
   const { idAvailable } = useSelector((state) => state.user);
   const [open, openModal, closeModal] = useModal(null);
   const [value, setValue, setIdAvailable, initInput] = useSignUp("");
+  const [submitErr, setSubmitErr] = useState(null);
 
   useEffect(() => {
     idAvailable === false && initInput("ID");
+    value.pwValidated === false && initInput("password");
+    value.birthValidated === false && initInput("birth");
   }, [open]);
 
   console.log(value.ID);
@@ -21,11 +24,42 @@ const SignUp = () => {
     openModal();
   };
 
+  const onSubmitForm = () => {
+    if (value.pwValidated && value.birthValidated && idAvailable) {
+      //데이터 전송
+      console.log("send data");
+    } else {
+      setSubmitErr(true);
+      openModal();
+    }
+  };
+
+  let modal;
+
+  if (open !== null) {
+    if (idAvailable !== null && submitErr !== true) {
+      modal = (
+        <Modal show={open} onClick={closeModal}>
+          {idAvailable
+            ? "사용할 수 있는 아이디 입니다"
+            : "이미 존재하는 아이디 입니다"}
+        </Modal>
+      );
+    }
+    if (submitErr && idAvailable !== null) {
+      modal = (
+        <Modal show={open} onClick={closeModal}>
+          양식을 전부 기입해주세요 <br />
+          (바르지 않은 입력값은 자동으로 삭제됩니다)
+        </Modal>
+      );
+    }
+  }
+
   return (
     <div className={styles.signUp}>
-      {idAvailable !== null && open !== null ? (
-        <Modal idAvailable={idAvailable} show={open} onClick={closeModal} />
-      ) : null}
+      {/*아이디 중복체크 modal*/}
+      {modal}
       <form>
         {/*성명*/}
         <div className={styles.wrapper}>
@@ -93,6 +127,7 @@ const SignUp = () => {
               value={value.ID}
               pattern="(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,12}"
               onChange={setValue}
+              autoComplete="user-name"
               required
             />
             <button
@@ -115,6 +150,7 @@ const SignUp = () => {
               value={value.password}
               pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{10,16}"
               onChange={setValue}
+              autoComplete="new-password"
               required
             />
             <span>
@@ -133,6 +169,7 @@ const SignUp = () => {
               value={value.passwordCheck}
               pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{10,16}"
               onChange={setValue}
+              autoComplete="new-password"
               required
             />
           </div>
@@ -192,7 +229,7 @@ const SignUp = () => {
               type="tel"
               name="tel_middle"
               value={value.tel_middle}
-              /*pattern="" */
+              pattern="[0-9]{3,4}"
               size="4"
               onChange={setValue}
               required
@@ -202,7 +239,7 @@ const SignUp = () => {
               type="tel"
               name="tel_last"
               value={value.tel_last}
-              /*pattern="" */
+              pattern="[0-9]{3,4}"
               size="4"
               onChange={setValue}
               required
@@ -298,7 +335,13 @@ const SignUp = () => {
             <span>*신청결과를 휴대전화번호로 알려드립니다</span>
           </div>
         </div>
-        <button className={styles.submit} type="submit">
+        <button
+          className={styles.submit}
+          onClick={(e) => {
+            e.preventDefault();
+            onSubmitForm(e);
+          }}
+        >
           회원가입신청
         </button>
       </form>
