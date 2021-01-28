@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { debounce } from "lodash";
-// import { useDispatch, useSelector } from "react-redux";
-// import { idCheckRequestAction } from "../../reducers/user";
+import { useDispatch } from "react-redux";
+import { idCheckRequestAction } from "../../reducers/user";
 
 const useSignUp = (initValue) => {
   const [name, setName] = useState(initValue);
@@ -22,10 +22,8 @@ const useSignUp = (initValue) => {
   const [sms, setSMS] = useState(false);
   const [pwValidated, setPwValidated] = useState(false);
   const [birthValidated, setBirthValidated] = useState(false);
-  // const [idChecked, setIdChecked] = useState(false);
 
-  // const dispatch = useDispatch();
-  // const { idAvailable } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   console.log(
     name,
@@ -47,15 +45,13 @@ const useSignUp = (initValue) => {
     "passwordPassed :",
     pwValidated,
     birthValidated
-    // IdValidated
   );
 
-  // const IdValidator = () => {
-  //   if (ID) {
-  //     dispatch(idCheckRequestAction(ID));
-  //     setIdChecked(!idChecked);
-  //   }
-  // };
+  const IdValidator = () => {
+    if (ID) {
+      dispatch(idCheckRequestAction(ID));
+    }
+  };
 
   const passwordValidator = debounce((value) => {
     password && password === value
@@ -166,10 +162,9 @@ const useSignUp = (initValue) => {
       sms: sms,
       pwValidated: pwValidated,
       birthValidated: birthValidated,
-      // idAvailable: idAvailable,
     },
     onChangeHandler,
-    // IdValidator,
+    IdValidator,
   ];
 };
 

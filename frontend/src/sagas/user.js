@@ -1,5 +1,13 @@
 import axios from "axios";
-import { all, delay, fork, put, takeLatest, call } from "redux-saga/effects";
+import {
+  all,
+  delay,
+  fork,
+  put,
+  takeLatest,
+  call,
+  takeEvery,
+} from "redux-saga/effects";
 import { authService, firebaseInstance } from "../firebase/fb";
 
 import {
@@ -10,50 +18,51 @@ import {
   LOG_OUT_SUCCESS,
   LOG_OUT_FAILURE,
   ID_CHECK_REQUEST,
-  // ID_CHECK_FAILURE,
-  // ID_CHECK_AVAILABLE,
-  // ID_CHECK_EXISTING,
+  ID_CHECK_FAILURE,
+  ID_CHECK_AVAILABLE,
+  ID_CHECK_EXISTING,
 } from "../reducers/user";
 
 function loginAPI(data) {
   return authService.signInWithEmailAndPassword(data.email, data.password);
 }
 
-// function getUserID() {
-//   try{
-// //return 유저아이디목록
-//  return axios.get('https://nllogin-12589-default-rtdb.firebaseio.com/userID.json');
-//   }catch(err){
-//     yield put({
-//       type: ID_CHECK_FAILURE,
-//       err: err.response.data,
-//     })
-//   }
-// }
+async function getUserID(ID) {
+  let sameId;
+  try {
+    //return 유저아이디목록
+    const userId = await axios.get(
+      "https://nllogin-12589-default-rtdb.firebaseio.com/userID.json"
+    );
 
-// function* signUpIdCheck(action) {
-//   //회원가입시 아이디 중복체크하는 함수
-//   try {
-//     const res = yield call(getUserID,undefined);
-//     const userId = Object.keys(res.data);
-//     return userId;
-//   } catch (err) {
-//     yield put({
-//       type: ID_CHECK_FAILURE,
-//       error: err.response.data,
-//     });
-//   }finally{
-//     if(Object.keys(userId).indexOf(action.ID) > -1){
-//       yield put({
-//         type: ID_CHECK_AVAILABLE,
-//       })
-//      }else{
-//       yield put({
-//         type: ID_CHECK_EXISTING,
-//       });
-//      }
-//   }
-// }
+    sameId = Object.keys(userId.data).filter((id) => {
+      return id === ID;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  return sameId.length === 0 ? true : false;
+}
+
+function* signUpIdCheck(action) {
+  //회원가입시 아이디 중복체크하는 함수
+
+  try {
+    const result = yield call(getUserID, action.ID);
+    result
+      ? yield put({
+          type: ID_CHECK_AVAILABLE,
+        })
+      : yield put({
+          type: ID_CHECK_EXISTING,
+        });
+  } catch (err) {
+    yield put({
+      type: ID_CHECK_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
 
 function* login(action) {
   try {
@@ -88,9 +97,9 @@ function* logout() {
   }
 }
 
-// function* watchIdCheck() {
-//   yield takeLatest(ID_CHECK_REQUEST, signUpIdCheck);
-// }
+function* watchIdCheck() {
+  yield takeEvery(ID_CHECK_REQUEST, signUpIdCheck);
+}
 
 function* watchLogIn() {
   yield takeLatest(LOG_IN_REQUEST, login);
@@ -101,5 +110,5 @@ function* watchLogOut() {
 }
 
 export default function* userSaga() {
-  yield all([fork(watchLogIn), fork(watchLogOut) /*fork(watchIdCheck)*/]);
+  yield all([fork(watchLogIn), fork(watchLogOut), fork(watchIdCheck)]);
 }

@@ -13,8 +13,8 @@ export const initialState = {
   me: null, // 자신의 정보
   loginData: {},
   /*<--아이디 중복체크-->*/
-  // IdAvailable: false,
-  // IdLoading: true,
+  idAvailable: null,
+  idLoading: true,
 };
 
 export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
@@ -26,15 +26,15 @@ export const LOG_OUT_SUCCESS = "LOG_OUT_SUCCESS";
 export const LOG_OUT_FAILURE = "LOG_OUT_FAILURE";
 
 /* --ID 중복체크-- */
-// export const ID_CHECK_REQUEST = "ID_CHECK_REQUEST";
-// export const ID_CHECK_FAILURE = "ID_CHECK_FAILURE";
-// export const ID_CHECK_AVAILABLE = "ID_CHECK_AVAILABLE";
-// export const ID_CHECK_EXISTING = "ID_CHECK_EXISTING";
+export const ID_CHECK_REQUEST = "ID_CHECK_REQUEST";
+export const ID_CHECK_FAILURE = "ID_CHECK_FAILURE";
+export const ID_CHECK_AVAILABLE = "ID_CHECK_AVAILABLE";
+export const ID_CHECK_EXISTING = "ID_CHECK_EXISTING";
 
-// export const idCheckRequestAction = (ID) => ({
-//   type: ID_CHECK_REQUEST,
-//   ID: ID,
-// });
+export const idCheckRequestAction = (ID) => ({
+  type: ID_CHECK_REQUEST,
+  ID: ID,
+});
 
 export const loginRequestAction = (data) => ({
   type: LOG_IN_REQUEST,
@@ -76,18 +76,16 @@ const reducer = (state = initialState, action) =>
         draft.logOutDone = false;
         draft.logOutError = action.error;
         break;
-      // case ID_CHECK_AVAILABLE:
-      //   console.log("ID AVAILABLE");
-      //   draft.IdAvailable = true;
-      //   break;
-      // case ID_CHECK_EXISTING:
-      //   console.log("ID EXISTING");
-      //   draft.IdAvailable = false;
-      //   break;
-      // case ID_CHECK_FAILURE:
-      //   console.log("ID ACCESS FAILED");
-      //   draft.IdLoading = false;
-      //   break;
+      case ID_CHECK_AVAILABLE:
+        draft.idAvailable = true;
+        break;
+      case ID_CHECK_EXISTING:
+        draft.idAvailable = false;
+        break;
+      case ID_CHECK_FAILURE:
+        console.log("ID ACCESS FAILED", action.result);
+        draft.idLoading = false;
+        break;
 
       default:
         break;

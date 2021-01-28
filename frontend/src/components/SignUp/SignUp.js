@@ -1,12 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { debounce } from "lodash";
+import { useSelector } from "react-redux";
 import styles from "./SignUp.module.css";
 import useSignUp from "../../hooks/SignUp/useSignUp";
+import useModal from "../../hooks/useModal";
+import Modal from "../UI/Modal";
 
 const SignUp = () => {
-  const [value, setValue /*setIdValidation */] = useSignUp("");
+  const { idAvailable } = useSelector((state) => state.user);
+  const [open, openModal, closeModal] = useModal(null);
+  const [value, setValue, setIdAvailable] = useSignUp("");
+
+  const onIdCheck = () => {
+    setIdAvailable();
+    openModal();
+  };
 
   return (
     <div className={styles.signUp}>
+      {idAvailable !== null && open !== null ? (
+        <Modal idAvailable={idAvailable} show={open} onClick={closeModal} />
+      ) : null}
       <form>
         {/*성명*/}
         <div className={styles.wrapper}>
@@ -77,9 +91,9 @@ const SignUp = () => {
               required
             />
             <button
-              type="click"
-              onClick={() => {}}
-              // disabled={value.idAvailable ? true : false}
+              type="button"
+              onClick={onIdCheck}
+              disabled={idAvailable ? true : false}
             >
               중복확인
             </button>
@@ -130,7 +144,7 @@ const SignUp = () => {
               onChange={setValue}
               required
             />
-            <button type="click">도로명주소 찾기</button>
+            <button type="button">도로명주소 찾기</button>
           </div>
         </div>
         {/*주소*/}
@@ -196,7 +210,7 @@ const SignUp = () => {
                 *국가상호대차서비스 선택시 휴대폰번호 입력 후 인증을 수행해야
                 합니다.
               </span>
-              <button type="click" name="tel_verification">
+              <button type="button" name="tel_verification">
                 인증번호 발송
               </button>
               <br />
