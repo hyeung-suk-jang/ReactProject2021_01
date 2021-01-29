@@ -19,7 +19,6 @@ function loginAPI(data) {
 function* login(action) {
   try {
     const result = yield call(loginAPI, action.data) //call(함수 이름, 매개변수)
-    console.log('Login Result', result)
     yield put({
       type: LOG_IN_SUCCESS,
       data: result.user.uid,
@@ -30,10 +29,6 @@ function* login(action) {
       error: err.response.data,
     });
   }
-}
-
-function logoutAPI(){
-    return authService.signOut();
 }
 
 function* logout() {

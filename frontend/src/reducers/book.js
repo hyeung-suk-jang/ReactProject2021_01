@@ -2,7 +2,12 @@ import produce from 'immer';
 
 export const initialState = {
   books: [],
-  borrowBooks: [{ id: "000000000",title:'DummyTitle' }],
+  borrowBooks: [
+    {id:'000000000',title:'DummyBook1'},
+    {id:'000000001',title:'DummyBook2'},
+    {id:'000000002',title:'DummyBook3'},
+    {id:'000000003',title:'DummyBook4'},
+  ],
   loadBooksLoading: false,
   loadBooksDone: false,
   loadBooksError: null,
@@ -34,7 +39,6 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       case LOAD_BOOKS_SUCCESS:
         draft.loadBooksLoading = false;
         draft.loadBooksDone = true;
-        console.log('Hello Data', action.data.root.result)
         draft.books = action.data.root.result.item
         break;
       case LOAD_BOOKS_FAILURE:

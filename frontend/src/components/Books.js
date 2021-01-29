@@ -16,7 +16,6 @@ const Books = ({detail}) => {
           dispatch({
             type: BORROW_BOOK_REQUEST,
             data: {
-              uid: me.uid,
               id: detail.id._text,
               title: detail.title_info._cdata
             },

@@ -8,9 +8,8 @@ const LNB = () => {
   const dispatch = useDispatch()
   const {me} = useSelector(state => state.user)
   const onLogOutClick = () => {
-    // authService.signOut();
     alert("로그아웃 하시겠습니까?");
-    // authService.signOut();
+    authService.signOut();
     dispatch({type: LOG_OUT_REQUEST})
   };
 
