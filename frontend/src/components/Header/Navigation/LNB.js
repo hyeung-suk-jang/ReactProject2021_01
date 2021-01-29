@@ -44,9 +44,11 @@ const LNB = () => {
               </Link>
             </li>
           </>
-        )}{" "}
+        )}
         <li>
-          <span>내서재</span>
+          <Link to='/mylib'>
+            <span>내서재</span>
+          </Link>
         </li>
         <li>
           <span>바구니</span>
