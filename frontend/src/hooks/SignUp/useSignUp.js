@@ -22,6 +22,7 @@ const useSignUp = (initValue) => {
   const [sms, setSMS] = useState(false);
   const [pwValidated, setPwValidated] = useState(null);
   const [birthValidated, setBirthValidated] = useState(null);
+  const [idChecked, setIdChecked] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -47,9 +48,16 @@ const useSignUp = (initValue) => {
     birthValidated
   );
 
+  const initIdChecked = debounce(() => {
+    setIdChecked(null);
+  }, 5000);
+
   const IdValidator = () => {
     if (ID) {
       dispatch(idCheckRequestAction(ID));
+      setIdChecked(true);
+    } else {
+      setIdChecked(false);
     }
   };
 
@@ -143,7 +151,7 @@ const useSignUp = (initValue) => {
     }
   };
 
-  const initInput = (type) => {
+  const initInput = debounce((type) => {
     switch (type) {
       case "name":
         setName(initValue);
@@ -196,7 +204,7 @@ const useSignUp = (initValue) => {
       default:
         return "";
     }
-  };
+  }, 500);
 
   return [
     {
@@ -217,10 +225,12 @@ const useSignUp = (initValue) => {
       sms: sms,
       pwValidated: pwValidated,
       birthValidated: birthValidated,
+      idChecked: idChecked,
     },
     onChangeHandler,
     IdValidator,
     initInput,
+    initIdChecked,
   ];
 };
 

@@ -8,27 +8,40 @@ import Modal from "../UI/Modal";
 const SignUp = () => {
   const { idAvailable } = useSelector((state) => state.user);
   const [open, openModal, closeModal] = useModal(null);
-  const [value, setValue, setIdAvailable, initInput] = useSignUp("");
+  const [value, setValue, setIdAvailable, initInput, initIdChecked] = useSignUp(
+    ""
+  );
+  const [submitClicked, setSubmitClicked] = useState(false);
   const [submitErr, setSubmitErr] = useState(null);
 
   useEffect(() => {
-    idAvailable === false && initInput("ID");
     value.pwValidated === false && initInput("password");
     value.birthValidated === false && initInput("birth");
   }, [open]);
 
-  console.log(value.ID);
+  console.log(submitErr);
+
+  const initSubmit = () => {
+    setSubmitClicked(null);
+    setSubmitErr(null);
+  };
 
   const onIdCheck = () => {
     setIdAvailable();
     openModal();
+    initIdChecked();
+    initSubmit();
   };
 
   const onSubmitForm = () => {
+    setSubmitClicked(true);
+
     if (value.pwValidated && value.birthValidated && idAvailable) {
       //데이터 전송
       console.log("send data");
+      setSubmitClicked(true);
     } else {
+      setSubmitClicked(true);
       setSubmitErr(true);
       openModal();
     }
@@ -37,16 +50,28 @@ const SignUp = () => {
   let modal;
 
   if (open !== null) {
-    if (idAvailable !== null && submitErr !== true) {
-      modal = (
-        <Modal show={open} onClick={closeModal}>
-          {idAvailable
-            ? "사용할 수 있는 아이디 입니다"
-            : "이미 존재하는 아이디 입니다"}
-        </Modal>
-      );
+    console.log(value.idChecked);
+    if (value.idChecked !== null) {
+      if (idAvailable) {
+        modal = (
+          <Modal show={open} onClick={closeModal}>
+            사용할 수 있는 아이디 입니다
+          </Modal>
+        );
+      } else if (
+        submitErr !== true &&
+        idAvailable !== true &&
+        value.idChecked === true
+      ) {
+        modal = (
+          <Modal show={open} onClick={closeModal}>
+            이미 존재하는 아이디 입니다
+          </Modal>
+        );
+      }
     }
-    if (submitErr && idAvailable !== null) {
+
+    if (submitErr !== null && submitClicked) {
       modal = (
         <Modal show={open} onClick={closeModal}>
           양식을 전부 기입해주세요 <br />
