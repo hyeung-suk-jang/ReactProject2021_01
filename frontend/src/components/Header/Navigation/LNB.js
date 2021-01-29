@@ -1,17 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { authService } from "../../../firebase/fb";
 import { LOG_OUT_REQUEST } from "../../../reducers/user";
 
-const LNB = () => {
-  const dispatch = useDispatch()
-  const {me} = useSelector(state => state.user)
+const LNB = ({ me }) => {
+  const dispatch = useDispatch();
   const onLogOutClick = () => {
     // authService.signOut();
     alert("로그아웃 하시겠습니까?");
     // authService.signOut();
-    dispatch({type: LOG_OUT_REQUEST})
+    dispatch({ type: LOG_OUT_REQUEST });
   };
 
   return (
@@ -24,7 +22,7 @@ const LNB = () => {
             </li>
             <li>
               <Link to="/">
-                <span>Dummy님(로그아웃)</span>
+                <span>{me}님(로그아웃)</span>
               </Link>
             </li>
             <li>

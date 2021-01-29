@@ -1,4 +1,5 @@
 import produce from "immer";
+import axios from "axios";
 
 export const initialState = {
   logInLoading: false, // 로그인 시도중
@@ -14,7 +15,6 @@ export const initialState = {
   loginData: {},
   /*<--아이디 중복체크-->*/
   idAvailable: null,
-  idLoading: true,
 };
 
 export const LOG_IN_REQUEST = "LOG_IN_REQUEST";
@@ -31,6 +31,10 @@ export const ID_CHECK_FAILURE = "ID_CHECK_FAILURE";
 export const ID_CHECK_AVAILABLE = "ID_CHECK_AVAILABLE";
 export const ID_CHECK_EXISTING = "ID_CHECK_EXISTING";
 
+export const SIGN_UP_REQUEST = "SIGN_UP_REQUEST";
+export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
+export const SIGN_UP_FAILURE = "SIGN_UP_FAILURE";
+
 export const idCheckRequestAction = (ID) => ({
   type: ID_CHECK_REQUEST,
   ID: ID,
@@ -39,6 +43,11 @@ export const idCheckRequestAction = (ID) => ({
 export const loginRequestAction = (data) => ({
   type: LOG_IN_REQUEST,
   data,
+});
+
+export const signUpRequestAction = (data) => ({
+  type: SIGN_UP_REQUEST,
+  data: data,
 });
 
 const reducer = (state = initialState, action) =>
@@ -86,7 +95,19 @@ const reducer = (state = initialState, action) =>
         console.log("ID ACCESS FAILED", action.result);
         draft.idLoading = false;
         break;
-
+      case SIGN_UP_REQUEST:
+        console.log("SIGN UP REQUEST", action.data);
+        draft.signUpLoading = true;
+        break;
+      case SIGN_UP_SUCCESS:
+        console.log("SIGN UP SUCCESS", action.userID);
+        draft.signUpDone = true;
+        draft.me = action.userID;
+        break;
+      case SIGN_UP_FAILURE:
+        console.log("SIGN UP FAILURE", action.data);
+        draft.signUpError = true;
+        break;
       default:
         break;
     }

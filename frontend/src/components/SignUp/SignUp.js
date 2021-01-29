@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./SignUp.module.css";
 import useSignUp from "../../hooks/SignUp/useSignUp";
 import useModal from "../../hooks/useModal";
 import Modal from "../UI/Modal";
+import { signUpRequestAction } from "../../reducers/user";
 
-const SignUp = () => {
+const SignUp = ({ history }) => {
+  const dispatch = useDispatch();
   const { idAvailable } = useSelector((state) => state.user);
   const [open, openModal, closeModal] = useModal(null);
   const [value, setValue, setIdAvailable, initInput, initIdChecked] = useSignUp(
     ""
   );
-  const [submitClicked, setSubmitClicked] = useState(false);
+  const [submitClicked, setSubmitClicked] = useState(null);
   const [submitErr, setSubmitErr] = useState(null);
 
   useEffect(() => {
     value.pwValidated === false && initInput("password");
     value.birthValidated === false && initInput("birth");
   }, [open]);
-
-  console.log(submitErr);
 
   const initSubmit = () => {
     setSubmitClicked(null);
@@ -37,9 +37,18 @@ const SignUp = () => {
     setSubmitClicked(true);
 
     if (value.pwValidated && value.birthValidated && idAvailable) {
-      //데이터 전송
+      console.log(typeof value.emailDomain);
+      console.log(value.email + "@" + value.emailDomain);
+      const signUpData = {
+        email: value.email + "@" + value.emailDomain,
+        password: value.password,
+        userID: value.ID,
+      };
+      dispatch(signUpRequestAction(signUpData));
       console.log("send data");
       setSubmitClicked(true);
+
+      history.replace("/");
     } else {
       setSubmitClicked(true);
       setSubmitErr(true);
@@ -50,7 +59,6 @@ const SignUp = () => {
   let modal;
 
   if (open !== null) {
-    console.log(value.idChecked);
     if (value.idChecked !== null) {
       if (idAvailable) {
         modal = (
@@ -302,7 +310,7 @@ const SignUp = () => {
             @
             <select name="emailDomain" onChange={setValue} required>
               <option value={null}>선택하세요</option>
-              <option value="naver">naver.com</option>
+              <option value={"naver.com"}>naver.com</option>
             </select>
           </div>
         </div>

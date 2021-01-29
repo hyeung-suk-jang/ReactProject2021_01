@@ -21,10 +21,44 @@ import {
   ID_CHECK_FAILURE,
   ID_CHECK_AVAILABLE,
   ID_CHECK_EXISTING,
+  SIGN_UP_REQUEST,
+  SIGN_UP_SUCCESS,
+  SIGN_UP_FAILURE,
 } from "../reducers/user";
 
 function loginAPI(data) {
-  return authService.signInWithEmailAndPassword(data.email, data.password);
+  return authService.signInWithEmailAndPassword(
+    data.email,
+    data.password,
+    data.userID
+  );
+}
+
+async function signUpAPI(data) {
+  let userID;
+  try {
+    const cred = await authService.createUserWithEmailAndPassword(
+      data.email,
+      data.password
+    );
+    cred.user.updateProfile({
+      displayName: data.userID,
+    });
+    const userId = {
+      [data.userID]: data.userID,
+    };
+
+    const addResult = await axios.post(
+      "https://nllogin-12589-default-rtdb.firebaseio.com/userID.json",
+      userId
+    );
+
+    userID = addResult && authService.currentUser.displayName;
+
+    return userID;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 async function getUserID(ID) {
@@ -64,6 +98,22 @@ function* signUpIdCheck(action) {
   }
 }
 
+function* signUp(action) {
+  const signUpResult = yield call(signUpAPI, action.data);
+
+  try {
+    yield put({
+      type: SIGN_UP_SUCCESS,
+      userID: authService.currentUser.displayName,
+    });
+  } catch (err) {
+    yield put({
+      type: SIGN_UP_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
 function* login(action) {
   try {
     const result = yield call(loginAPI, action.data); //call(함수 이름, 매개변수)
@@ -98,7 +148,7 @@ function* logout() {
 }
 
 function* watchIdCheck() {
-  yield takeEvery(ID_CHECK_REQUEST, signUpIdCheck);
+  yield takeLatest(ID_CHECK_REQUEST, signUpIdCheck);
 }
 
 function* watchLogIn() {
@@ -109,6 +159,15 @@ function* watchLogOut() {
   yield takeLatest(LOG_OUT_REQUEST, logout);
 }
 
+function* watchSignUp() {
+  yield takeLatest(SIGN_UP_REQUEST, signUp);
+}
+
 export default function* userSaga() {
-  yield all([fork(watchLogIn), fork(watchLogOut), fork(watchIdCheck)]);
+  yield all([
+    fork(watchLogIn),
+    fork(watchLogOut),
+    fork(watchIdCheck),
+    fork(watchSignUp),
+  ]);
 }

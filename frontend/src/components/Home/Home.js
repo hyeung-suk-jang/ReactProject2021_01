@@ -3,7 +3,7 @@ import { authService } from "../../firebase/fb";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 
-const Home = ({ history }) => {
+const Home = ({ history, me }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Home = ({ history }) => {
 
   return (
     <>
-      <Header history={history} isLoggedIn={isLoggedIn} />
+      <Header history={history} isLoggedIn={isLoggedIn} me={me} />
       <Main history={history} />
     </>
   );

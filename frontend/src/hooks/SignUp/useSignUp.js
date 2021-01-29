@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { debounce } from "lodash";
 import { useDispatch } from "react-redux";
 import { idCheckRequestAction } from "../../reducers/user";
@@ -50,7 +50,7 @@ const useSignUp = (initValue) => {
 
   const initIdChecked = debounce(() => {
     setIdChecked(null);
-  }, 5000);
+  }, 3000);
 
   const IdValidator = () => {
     if (ID) {
@@ -221,6 +221,7 @@ const useSignUp = (initValue) => {
       tel_middle: tel_middle,
       tel_last: tel_last,
       email: email,
+      emailDomain: emailDomain,
       userType: userType,
       sms: sms,
       pwValidated: pwValidated,
