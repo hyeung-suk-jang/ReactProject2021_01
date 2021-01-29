@@ -2,13 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { LOG_OUT_REQUEST } from "../../../reducers/user";
+import { authService } from "../../../firebase/fb";
 
 const LNB = ({ me }) => {
   const dispatch = useDispatch();
   const onLogOutClick = () => {
     // authService.signOut();
     alert("로그아웃 하시겠습니까?");
-    // authService.signOut();
+    authService.signOut();
     dispatch({ type: LOG_OUT_REQUEST });
   };
 
@@ -22,7 +23,7 @@ const LNB = ({ me }) => {
             </li>
             <li>
               <Link to="/">
-                <span>{me}님(로그아웃)</span>
+                <span>{me}님</span>
               </Link>
             </li>
             <li>

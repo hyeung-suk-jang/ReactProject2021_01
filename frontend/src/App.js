@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./components/Home/Home";
 import { Route, Switch } from "react-router-dom";
 import Login from "./components/Login";
@@ -11,13 +11,13 @@ import "./css/style.css";
 
 function App() {
   const history = useHistory();
-
-  let me;
+  const [me, setMe] = useState();
 
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
-        me = authService.currentUser.displayName;
+        console.log("setMe");
+        setMe(authService.currentUser.displayName);
       } else {
         console.log("NO USER");
       }
