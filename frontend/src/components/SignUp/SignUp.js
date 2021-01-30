@@ -1,12 +1,98 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./SignUp.module.css";
 import useSignUp from "../../hooks/SignUp/useSignUp";
+import useModal from "../../hooks/useModal";
+import Modal from "../UI/Modal";
+import { signUpRequestAction } from "../../reducers/user";
 
-const SignUp = () => {
-  const [value, setValue] = useSignUp("");
+const SignUp = ({ history }) => {
+  const dispatch = useDispatch();
+  const { idAvailable } = useSelector((state) => state.user);
+  const [open, openModal, closeModal] = useModal(null);
+  const [value, setValue, setIdAvailable, initInput, initIdChecked] = useSignUp(
+    ""
+  );
+  const [submitClicked, setSubmitClicked] = useState(null);
+  const [submitErr, setSubmitErr] = useState(null);
+
+  useEffect(() => {
+    value.pwValidated === false && initInput("password");
+    value.birthValidated === false && initInput("birth");
+  }, [open]);
+
+  const initSubmit = () => {
+    setSubmitClicked(null);
+    setSubmitErr(null);
+  };
+
+  const onIdCheck = () => {
+    setIdAvailable();
+    openModal();
+    initIdChecked();
+    initSubmit();
+  };
+
+  const onSubmitForm = () => {
+    setSubmitClicked(true);
+
+    if (value.pwValidated && value.birthValidated && idAvailable) {
+      console.log(typeof value.emailDomain);
+      console.log(value.email + "@" + value.emailDomain);
+      const signUpData = {
+        email: value.email + "@" + value.emailDomain,
+        password: value.password,
+        userID: value.ID,
+      };
+      dispatch(signUpRequestAction(signUpData));
+      console.log("send data");
+      setSubmitClicked(true);
+
+      history.replace("/");
+    } else {
+      setSubmitClicked(true);
+      setSubmitErr(true);
+      openModal();
+    }
+  };
+
+  let modal;
+
+  if (open !== null) {
+    if (value.idChecked !== null) {
+      if (idAvailable) {
+        modal = (
+          <Modal show={open} onClick={closeModal}>
+            사용할 수 있는 아이디 입니다
+          </Modal>
+        );
+      } else if (
+        submitErr !== true &&
+        idAvailable !== true &&
+        value.idChecked === true
+      ) {
+        modal = (
+          <Modal show={open} onClick={closeModal}>
+            이미 존재하는 아이디 입니다
+          </Modal>
+        );
+      }
+    }
+
+    if (submitErr !== null && submitClicked) {
+      modal = (
+        <Modal show={open} onClick={closeModal}>
+          양식을 전부 기입해주세요 <br />
+          (바르지 않은 입력값은 자동으로 삭제됩니다)
+        </Modal>
+      );
+    }
+  }
 
   return (
     <div className={styles.signUp}>
+      {/*아이디 중복체크 modal*/}
+      {modal}
       <form>
         {/*성명*/}
         <div className={styles.wrapper}>
@@ -26,7 +112,7 @@ const SignUp = () => {
           <span>*생년월일</span>
           <div className={styles.input}>
             <input
-              type="number"
+              type="text"
               name="birth"
               value={value.birth}
               onChange={setValue}
@@ -72,11 +158,16 @@ const SignUp = () => {
               type="text"
               name="ID"
               value={value.ID}
-              /*pattern="6~12자리의 영문 또는 숫자 혼용, 특수문자 제외"*/
+              pattern="(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,12}"
               onChange={setValue}
+              autoComplete="user-name"
               required
             />
-            <button type="click" disabled={false}>
+            <button
+              type="button"
+              onClick={onIdCheck}
+              disabled={idAvailable ? true : false}
+            >
               중복확인
             </button>
             <span>*아이디는 6~12자리의 영문 또는 숫자 혼용, 특수문자 제외</span>
@@ -90,13 +181,14 @@ const SignUp = () => {
               type="password"
               name="password"
               value={value.password}
-              /*pattern=""*/
+              pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{10,16}"
               onChange={setValue}
+              autoComplete="new-password"
               required
             />
             <span>
-              *비밀번호는 10~16자리의 영문/숫자 또는 영문/숫자/특수문자[{""}
-              !@#$%^&*(){""}]혼용
+              *비밀번호는 10~16자리의 영문/숫자 또는 영문/숫자/특수문자[
+              !@#$%^&*()]혼용
             </span>
           </div>
         </div>
@@ -108,8 +200,9 @@ const SignUp = () => {
               type="password"
               name="passwordCheck"
               value={value.passwordCheck}
-              /*pattern=""*/
+              pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{10,16}"
               onChange={setValue}
+              autoComplete="new-password"
               required
             />
           </div>
@@ -126,7 +219,7 @@ const SignUp = () => {
               onChange={setValue}
               required
             />
-            <button type="click">도로명주소 찾기</button>
+            <button type="button">도로명주소 찾기</button>
           </div>
         </div>
         {/*주소*/}
@@ -143,7 +236,7 @@ const SignUp = () => {
             />
             <input
               type="text"
-              name="address_detail"
+              name="address_detail2"
               size="50"
               value={value.address_detail2}
               onChange={setValue}
@@ -166,18 +259,20 @@ const SignUp = () => {
             </select>
             -
             <input
-              type="number"
+              type="tel"
               name="tel_middle"
               value={value.tel_middle}
+              pattern="[0-9]{3,4}"
               size="4"
               onChange={setValue}
               required
             />
             -
             <input
-              type="number"
+              type="tel"
               name="tel_last"
               value={value.tel_last}
+              pattern="[0-9]{3,4}"
               size="4"
               onChange={setValue}
               required
@@ -190,7 +285,7 @@ const SignUp = () => {
                 *국가상호대차서비스 선택시 휴대폰번호 입력 후 인증을 수행해야
                 합니다.
               </span>
-              <button type="click" name="tel_verification">
+              <button type="button" name="tel_verification">
                 인증번호 발송
               </button>
               <br />
@@ -213,9 +308,9 @@ const SignUp = () => {
               required
             />
             @
-            <select name="text" required>
+            <select name="emailDomain" onChange={setValue} required>
               <option value={null}>선택하세요</option>
-              <option value="naver">naver.com</option>
+              <option value={"naver.com"}>naver.com</option>
             </select>
           </div>
         </div>
@@ -273,7 +368,13 @@ const SignUp = () => {
             <span>*신청결과를 휴대전화번호로 알려드립니다</span>
           </div>
         </div>
-        <button className={styles.submit} type="submit">
+        <button
+          className={styles.submit}
+          onClick={(e) => {
+            e.preventDefault();
+            onSubmitForm(e);
+          }}
+        >
           회원가입신청
         </button>
       </form>
