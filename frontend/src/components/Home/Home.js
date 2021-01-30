@@ -3,7 +3,7 @@ import { authService } from "../../firebase/fb";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 
-const Home = ({ history }) => {
+const Home = ({ history, me }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -16,11 +16,13 @@ const Home = ({ history }) => {
       // setInit(true);
     });
   }, []); // 로그인 아웃 여부 판단
-  return(
-  <>
-    <Header history={history} isLoggedIn={isLoggedIn}/>
-    <Main history={history} />
-  </>)
+
+  return (
+    <>
+      <Header history={history} isLoggedIn={isLoggedIn} me={me} />
+      <Main history={history} />
+    </>
+  );
 };
 
 export default Home;
