@@ -36,30 +36,28 @@ const Books = ({detail}) => {
         }
     })
     return (
-      <div style={{ border: "1px solid red" }}>
-        <h1>title: {detail.title_info._cdata}</h1>
-        <h1>지은이: {detail.author_info._cdata}</h1>
-        <h1>연도: {detail.pub_year_info._text}</h1>
-        <h1>비치일: {detail.reg_date._text}</h1>
-        <h1>출판사: {detail.pub_info._cdata}</h1>
-        <h1>청구기호: {detail.call_no._cdata}</h1>
-        <h1>자료 이용장소: {detail.place_info._text}</h1>
+      <div className='result' >
+        <span className='title txt_black'><strong>{detail.title_info._cdata}</strong></span>
+        <div className="double_space"></div>
+        <span className='author detail_info'>{detail.author_info._cdata} | </span>
+        <span className='pub_info detail_info'>{detail.pub_info._cdata} | </span>
+        <span className='pub_year_info detail_info'>{detail.pub_year_info._text} | </span>
+        <span className='reg_date detail_info'>비치일: {detail.reg_date._text} | </span>
+        <span className='call_no detail_info'>청구기호: {detail.call_no._cdata}</span>
+        <div className="row_space" style={{height:'9px'}}></div>
+        <span className='txt_black useinfo'>자료 이용장소:</span><span className='txt_orange place_info'> {detail.place_info._text}</span>
+        <div className="double_space"></div>
         {borrowBooks.find((v) => v.id === detail.id._text) ? (
           <button
-            style={{
-              border: "1px solid black",
-              fontSize: "15px",
-              background: "tomato",
-              color: "#fff",
-            }}
+          className='return_btn'
             onClick={onClickReturn}
           >
             반납하기
           </button>
         ) : (
           <button
-            style={{ border: "1px solid black", fontSize: "15px" }}
-            onClick={onClickBorrow}
+          className='borrow_btn'
+          onClick={onClickBorrow}
           >
             대출하기
           </button>

@@ -10,7 +10,7 @@ const SearchBar = () => {
     (e) => {
       e.preventDefault();
 
-      history.push(`/detail/${product}`);
+      history.push(`/detail:${product}`);
       setProduct("");
     },
     [product]

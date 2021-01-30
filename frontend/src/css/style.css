@@ -901,3 +901,56 @@ legend,
 .footer-sns__item .youtube .ico {
   background-position: -108px -161px;
 }
+
+.result{
+  border: 1px solid red;
+  padding: 20px 0 17px 30px;
+  
+}
+.result:hover{
+  background-color: #f9f9f9;
+}
+
+.result .title{
+  font-size: 18px;
+}
+.txt_black{
+  color: #000;
+}
+
+.double_space{
+  height: 18px;
+}
+
+.result .detail_info{
+  font-size: 15px;
+}
+
+.useinfo{
+  font-size: 15px;
+}
+
+.txt_orange{
+  color: #d6572e
+}
+
+.place_info{
+  font-size: 15px;
+}
+
+.result .borrow_btn{
+  border: 1px solid #ccc;
+  padding: 0 5px;
+  color:#000;
+  font-size: 15px;
+  background-color: #fafafa;
+}
+
+.result .return_btn{
+  border: 1px solid rgb(233, 139, 139);
+  padding: 0 5px;
+  color:#FFF;
+  font-size: 15px;
+  background-color: #cc5656;
+
+}

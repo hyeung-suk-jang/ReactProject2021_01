@@ -16,6 +16,7 @@ function* loadBooks(action){
             data: JSON.parse(xml2json(result.data, { compact: true, spaces: 4 }))
         })
     }catch(err){
+        console.error(err)
         yield put({
             type: LOAD_BOOKS_FAILURE,
             error: err.response.data,

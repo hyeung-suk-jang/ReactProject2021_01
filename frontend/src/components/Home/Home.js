@@ -20,12 +20,14 @@ const Home = ({ history, me }) => {
           render={() => <Main me={me} history={history} />}
         />
         <Route exact path="/login" render={() => <Login me={me} />} />
-        <Route path="/detail:product" render={() => <Detail me={me} />} />
+        <Route exact path="/detail:product" component={Detail} />
         <Route
+        exact
           path="/signup"
           render={() => <SignUp history={history} me={me} />}
         />
         <Route
+        exact
           path="/mylib"
           render={() => <MyLibrary history={history} me={me} />}
         />

@@ -11,7 +11,6 @@ const MyLibrary = ({ me }) => {
     alert("로그인해주세요");
     history.goBack();
   }
-  console.log(borrowBooks);
   return (
     <div>
       <h1>내 서재</h1>

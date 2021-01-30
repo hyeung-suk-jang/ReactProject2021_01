@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Books from './Books';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import {LOAD_BOOKS_REQUEST } from '../reducers/book'
 
 
 const Detail = () => {
+    console.log('DETAIL!!!!!')
     const dispatch = useDispatch()
     const {product} = useParams()
     const { books, loadBooksLoading } = useSelector((state) => state.book)
