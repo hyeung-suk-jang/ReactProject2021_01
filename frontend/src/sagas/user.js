@@ -26,9 +26,6 @@ import {
   SIGN_UP_FAILURE,
 } from "../reducers/user";
 
-function loginAPI(data) {
-  return authService.signInWithEmailAndPassword(data.email, data.password);
-}
 
 async function signUpAPI(data) {
   let userID;
@@ -108,6 +105,10 @@ function* signUp(action) {
       error: err.response.data,
     });
   }
+}
+
+function loginAPI(data) {
+  return authService.signInWithEmailAndPassword(data.email, data.password);
 }
 
 function* login(action) {

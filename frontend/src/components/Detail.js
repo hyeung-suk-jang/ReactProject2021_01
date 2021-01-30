@@ -4,6 +4,7 @@ import Books from './Books';
 import { useDispatch, useSelector } from 'react-redux';
 import {LOAD_BOOKS_REQUEST } from '../reducers/book'
 
+
 const Detail = () => {
     const dispatch = useDispatch()
     const {product} = useParams()
