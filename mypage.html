@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src ="./js/jquery-3.5.1.js"></script>
+    <script src ="./js/main.js"></script>
+    <script src ="./js/calendar.js"></script>
+    <title>국립중앙도서관</title>
+</head>
+<body>
+    <div class="header-wrap">
+        <!-- <div class="notice">
+        </div>    -->
+        <header>
+            <nav class="lnb">
+                <ul class="">
+                    <li><a href="">로그인</a></li>
+                    <li><a href="">회원가입</a></li>
+                    <li><a href="">내서재</a></li>
+                    <li><a href="">바구니</a></li>
+                    <li><a href="">ENGLISH</a></li>
+                </ul>
+            </nav>
+            <div class="logo">
+                <div class="logo_inner">
+                    <h1>
+                        <a href="https://www.nl.go.kr/" alt="국립중앙도서관 메인페이지로 이동">
+                            <span class="hide">문화체육관광부 국앙중립도서관</span>
+                        </a>
+                    </h1>
+                </div>
+            </div>
+            <nav class="gnb">
+                <div class="menu_bg"></div>
+                <div class="gnb_inner">
+                    <ul class="gnb-depth1 clear">
+                        <li class="gnb-depth1_item">
+                            <a href="" class="depth"><span>자료검색</span></a>
+                            <ul class="gnb-depth2">
+                                <li class="gnb-depth2_item"><a href="">소장자료</a></li>
+                                <li class="gnb-depth2_item"><a href="">디지털화 자료</a></li>
+                                <li class="gnb-depth2_item"><a href="">Web DB</a></li>
+                                <li class="gnb-depth2_item"><a href="">신착자료</a></li>
+                                <li class="gnb-depth2_item"><a href="">사서추천도서</a></li>
+                                <li class="gnb-depth2_item"><a href="">영상자료 목록</a></li>
+                                <li class="gnb-depth2_item"><a href="">국가자료종합목록</a></li>
+                                <li class="gnb-depth2_item"><a href="">한국고전적종합목록</a></li>
+                                <li class="gnb-depth2_item"><a href="">국가전자도서관</a></li>
+                                <li class="gnb-depth2_item"><a href="">근대문학종합목록</a></li>
+                                <li class="gnb-depth2_item"><a href="">국가서지 LOD</a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb-depth1_item">
+                            <a href="" class="depth"><span>디지털컬렉션</span></a>
+                            <ul class="gnb-depth2">
+                                <li class="gnb-depth2_item"><a href="">주제별컬렉션</a></li>
+                                <li class="gnb-depth2_item"><a href="">대한민국 신문 아카이브</a></li>
+                                <li class="gnb-depth2_item"><a href="">관보</a></li>
+                                <li class="gnb-depth2_item"><a href="">해외 한국 관련 기록물</a></li>
+                                <li class="gnb-depth2_item"><a href="">OAK국가리포지터리</a></li>
+                                <li class="gnb-depth2_item"><a href="">오아시스(OASIS)</a></li>
+                                <li class="gnb-depth2_item"><a href="">책 읽어주는 도서관</a></li>
+                                <li class="gnb-depth2_item"><a href="">전시컬렉션(온라인전시)</a></li>
+                                <li class="gnb-depth2_item"><a href="">세계의 도서관</a></li>
+                                <li class="gnb-depth2_item"><a href="">동아시아 디지털도서관(EADL)</a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb-depth1_item">
+                            <a href="" class="depth"><span>신청 &middot; 참여</span></a>
+                            <ul class="gnb-depth2">
+                                <li class="gnb-depth2_item"><a href=""> 자료신청안내</a></li>
+                                <li class="gnb-depth2_item"><a href="">비치희망도서</a></li>
+                                <li class="gnb-depth2_item"><a href="">상호대차</a></li>
+                                <li class="gnb-depth2_item"><a href="">책다모아(기증)</a></li>
+                                <li class="gnb-depth2_item"><a href="">사서에게 물어보세요</a></li>
+                                <li class="gnb-depth2_item"><a href="">인문열차, 삶을 달리다</a></li>
+                                <li class="gnb-depth2_item"><a href="">연구정보서비스</a></li>
+                                <li class="gnb-depth2_item"><a href="">견학</a></li>
+                                <li class="gnb-depth2_item"><a href="">예약</a></li>
+                                <li class="gnb-depth2_item"><a href="">사회봉사</a></li>
+                                <li class="gnb-depth2_item"><a href="">교육/문화프로그램</a></li>
+                                <li class="gnb-depth2_item"><a href="">메일링서비스</a></li>
+                                <li class="gnb-depth2_item"><a href="">연계 API</a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb-depth1_item">
+                            <a href="" class="depth"><span>도서관 이용</span></a>
+                            <ul class="gnb-depth2">
+                                <li class="gnb-depth2_item"><a href="">집에서 이용하는 도서관</a></li>
+                                <li class="gnb-depth2_item"><a href="">본관 이용시간 및 이용증 발급</a></li>
+                                <li class="gnb-depth2_item"><a href="">본관 자료실 안내</a></li>
+                                <li class="gnb-depth2_item"><a href="">디지털도서관 안내</a></li>
+                                <li class="gnb-depth2_item"><a href="">도서관 일정</a></li>
+                                <li class="gnb-depth2_item"><a href="">편의시설</a></li>
+                                <li class="gnb-depth2_item"><a href="">자료복사</a></li>
+                                <li class="gnb-depth2_item"><a href="">전시</a></li>
+                                <li class="gnb-depth2_item"><a href="">자주하는 질문</a></li>
+                                <li class="gnb-depth2_item"><a href="">설문조사</a></li>
+                                <li class="gnb-depth2_item"><a href="">오류신고</a></li>
+                                <li class="gnb-depth2_item"><a href="">분실물찾기</a></li>
+                            </ul>
+                        </li>
+                        <li class="gnb-depth1_item">
+                            <a href="" class="depth"><span>도서관 소개</span></a>
+                            <ul class="gnb-depth2">
+                                <li class="gnb-depth2_item"><a href="">국립중앙도서관</a></li>
+                                <li class="gnb-depth2_item"><a href="">소속도서관</a></li>
+                                <li class="gnb-depth2_item"><a href="">도서관 협력망</a></li>
+                                <li class="gnb-depth2_item"><a href="">도서관소식</a></li>
+                                <li class="gnb-depth2_item"><a href="">발간자료</a></li>
+                                <li class="gnb-depth2_item"><a href="">정보공개</a></li>
+                                <li class="gnb-depth2_item"><a href="">관내사이트 안내</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- <div class="library_info">
+                <h5>1월 20일</h5>
+                <p>운영시간 10:00 ~ 17:00</p>>
+            </div> -->
+        </header>
+    </div><!--header-wrap-->
+    <div id="container" class="container">
+        <div class="contents">
+            <div class="search" >
+                <div class="search-inner">
+                    <div class="search-box">
+                        <input type="text" placeholder="검색어를 입력해주세요.">
+                        <button>다국어입력기</button>
+                    </div>
+                    <div><button>검색</button></div>
+                    <div><button>상세검색</button></div>
+                </div>
+            </div>
+        </div>
+    </div>  
+             
+
+    <div id="footer" class="footer">
+            <!-- 푸터 상단 --> 
+        <div class="footer__inner-top"> 
+        <div class="inner"> 
+        <!-- 안내 영역 --> 
+        <ul class="footer-util__list"> 
+        <li class="footer-util__item"> <a href="http://help.nl.go.kr/" target="_blank">원격헬프데스크</a> 
+            <!-- [D] 모바일에서는 미노출 --> </li> 
+        <!--<li class="footer-util__item">--> 
+        <!--<a href="https://ask.nl.go.kr/popup/userListMainAll.jsp" target="_blank">장애인전용 온라인상담</a>--> 
+        <!-- [D] 모바일에서는 미노출 --> 
+        <!--</li>--> 
+        <li class="footer-util__item"> <a href="/NL/contents/N31700000000.do">국민신문고</a> 
+            <!-- [D] PC 링크 --> 
+            <!-- 		<a href="https://www.epeople.go.kr/index.jsp" target="_blank" class="none_pc">국민신문고</a>  -->
+            <!-- [D] 모바일 링크 --> </li> 
+        <li class="footer-util__item"> <a href="/NL/contents/N70800000000.do">클린신고센터</a> </li> 
+        <li class="footer-util__item"> <a href="/NL/contents/N50108000000.do">찾아오시는 길</a> </li> 
+        <li class="footer-util__item none_mobile"> <a href="/NL/contents/N71100000000.do">사이트맵</a> </li> 
+        <li class="footer-util__item"> <a href="/NL/contents/N71210000000.do"><span class="none_mobile">누리집</span>이용가이드</a> </li> 
+        </ul> 
+        <!-- 안내 영역 --> 
+        <!-- SNS 영역 --> 
+        <ul class="footer-sns__list"> 
+        <li class="footer-sns__item"> <a href="https://www.instagram.com/nationallibraryofkorea/" class="instagram" target="_blank" title="새창 열림"> <span class="ico">인스타그램</span> </a> </li> 
+        <li class="footer-sns__item"> <a href="http://blog.naver.com/dibrary1004" class="blog" target="_blank" title="새창 열림"> <span class="ico">블로그</span> </a> </li> 
+        <li class="footer-sns__item"> <a href="https://ko-kr.facebook.com/national.library.of.korea" class="facebook" target="_blank" title="새창 열림"> <span class="ico">페이스북</span> </a> </li> 
+        <li class="footer-sns__item"> <a href="https://twitter.com/library1004" class="twitter" target="_blank" title="새창 열림"> <span class="ico">트위터</span> </a> </li> 
+        <li class="footer-sns__item"> <a href="https://www.youtube.com/channel/UCKjWKI1yRlzWfgnF98HZ_TA" class="youtube" target="_blank" title="새창 열림"> <span class="ico">유투브</span> </a> </li> 
+        </ul> 
+        <!-- //SNS 영역 --> 
+        </div> 
+        </div> 
+        <!-- //푸터 상단 --> 
+        <!-- 푸터 하단 --> 
+        <div class="footer__inner-bottom"> 
+        <div class="inner"> 
+        <!-- PC 정책, 법령 --> 
+        <div class="policy-wrap"> 
+        <ul class="policy__list"> 
+            <li class="policy__item"><a href="/NL/contents/N70100000000.do">개인정보처리방침</a></li> 
+            <li class="policy__item"><a href="/NL/contents/N70200000000.do">국립중앙도서관 윤리강령</a></li> 
+            <li class="policy__item"><a href="/NL/contents/N70300000000.do">도서관법령</a></li> 
+            <li class="policy__item"><a href="/NL/contents/N70400000000.do">이용봉사헌장</a></li> 
+            <li class="policy__item"><a href="/NL/contents/N50803010000.do">사전정보공개</a></li> 
+            <li class="policy__item"><a href="/NL/contents/N70600000000.do">저작권정책</a></li> 
+        </ul> 
+        </div> 
+        <!-- //PC 정책, 법령 --> 
+        <!-- MO 정책, 법령 --> 
+        <div class="mo_policy-wrap"> 
+        <label for="policy_page" class="ir_text">개인정보처리방침</label> 
+        <select id="policy_page" class="policy-select-wrap"> <option value="/NL/contents/N70100000000.do">개인정보처리방침</option> <option value="/NL/contents/N70200000000.do">국립중앙도서관 윤리강령</option> <option value="/NL/contents/N70300000000.do">도서관법령</option> <option value="/NL/contents/N70400000000.do">이용봉사헌장</option> <option value="/NL/contents/N50803010000.do">사전정보공개</option> <option value="/NL/contents/N70600000000.do">저작권정책</option> </select> 
+        <button type="button" title="새창열림" id="policy_page_btn" class="site-go">이동</button> 
+        </div> 
+        <!-- //MO 정책, 법령 --> 
+        <!-- 유관사이트 --> 
+        <div class="family-wrap"> 
+        <label for="family_site" class="ir_text">유관사이트</label> 
+        <select id="family_site" class="family-select-wrap"> <option value="" class="opt-tit">유관사이트</option> <option value="https://www.nlcy.go.kr">국립어린이청소년도서관</option> <option value="https://sejong.nl.go.kr">국립세종도서관</option> <option value="http://www.nld.go.kr">국립장애인도서관</option> <option value="https://www.data.go.kr">공공데이터포털</option> <option value="http://www.acrc.go.kr">국민권익위원회</option> <option value="http://www.gov.kr/portal/main">정부24</option> <option value="http://mcst.go.kr">문화체육관광부</option> <option value="http://www.kpf.or.kr">한국언론진흥재단</option> <option value="http://www.museum.go.kr/uigwe/">외규장각 의궤</option> <option value="http://www.nanet.go.kr">국회도서관</option> <option value="http://www.clip.go.kr">도서관정보정책위원회</option> <option value="http://library.scourt.go.kr">법원도서관</option> <option value="http://www.kpec.or.kr">간행물윤리위원회</option> <option value="http://www.kla.kr">한국도서관협회</option> <option value="http://www.copycle.or.kr">한국복제전송저작권협회</option> <option value="http://www.libsta.go.kr">국가도서관통계시스템</option> <option value="http://www.kpla.kr">(사)공공도서관협의회</option> </select> 
+        <button type="button" title="새창열림" id="family_site_btn" class="site-go">이동</button> 
+        </div> 
+        <!-- //유관사이트 --> 
+        <!-- 국립중앙도서관 정보 --> 
+        <div class="info-wrap"> 
+        <!-- 푸터 로고 --> 
+        <em class="footer-logo" title="문화체육관광부 국립중앙도서관 로고">  </em> 
+        <!-- //푸터 로고 --> 
+        <!-- 주소, Copyright --> 
+        <ul class="contact__list"> 
+            <li class="contact__item">우편번호 06579 서울특별시 서초구 반포대로 201(반포동)</li> 
+            <li class="contact__item">문의전화 <span class="tel">02-590-0500</span> <a href="tel:02-590-0500" class="lnk_tel">02-590-0500</a> 팩스 02-590-0530 </li> 
+            <li class="contact__item copyright">Copyright© National Library of Korea. All rights reserved.</li> 
+        </ul> 
+        <!-- //주소, Copyright --> 
+        </div> 
+        <!-- //국립중앙도서관 정보 --> 
+        </div> 
+        </div> 
+    <!-- //푸터 하단 --> 
+    </div>
+</body>
+</html>

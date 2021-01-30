@@ -27,11 +27,7 @@ import {
 } from "../reducers/user";
 
 function loginAPI(data) {
-  return authService.signInWithEmailAndPassword(
-    data.email,
-    data.password,
-    data.userID
-  );
+  return authService.signInWithEmailAndPassword(data.email, data.password);
 }
 
 async function signUpAPI(data) {

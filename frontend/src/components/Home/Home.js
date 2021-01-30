@@ -4,22 +4,22 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 
 const Home = ({ history, me }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    authService.onAuthStateChanged((user) => {
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-      // setInit(true);
-    });
-  }, []); // 로그인 아웃 여부 판단
+  // useEffect(() => {
+  //   authService.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       setIsLoggedIn(true);
+  //     } else {
+  //       setIsLoggedIn(false);
+  //     }
+  //     // setInit(true);
+  //   });
+  // }, []); // 로그인 아웃 여부 판단
 
   return (
     <>
-      <Header history={history} isLoggedIn={isLoggedIn} me={me} />
+      <Header history={history} me={me} />
       <Main history={history} />
     </>
   );
