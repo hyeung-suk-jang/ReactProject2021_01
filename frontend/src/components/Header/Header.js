@@ -3,7 +3,7 @@ import LNB from "./Navigation/LNB";
 import GNB from "./Navigation/GNB";
 import HeaderLogo from "./Navigation/HeaderLogo";
 
-const Header = ({ history, me }) => (
+const Layout = ({ history, me }) => (
   <div className="header-wrap">
     <header>
       <LNB className="lnb" history={history} me={me} />
@@ -17,4 +17,4 @@ const Header = ({ history, me }) => (
   </div>
 );
 
-export default Header;
+export default Layout;
