@@ -445,7 +445,7 @@ header .gnb ul li a:hover span {
 .sites .sites-inner {
   position: relative;
   max-width: 1240px;
-  min-height: 300px;
+  min-height: 280px;
   margin: 0 auto;
 }
 .sites .sites-inner h5 {
@@ -555,17 +555,70 @@ header .gnb ul li a:hover span {
 .public {
   width: 100%;
   padding: 50px 0;
-  background: url(/../images/public_bg.png) 0 0 repeat,
+  background: url(../images/public_bg.png) 0 0 repeat,
     linear-gradient(-45deg, #3669ac, #329bba);
   box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   background-size: 100% 100%;
 }
-.public .public_inner {
+.public-inner {
   position: relative;
   max-width: 1240px;
   margin: 0 auto;
 }
+.public-inner>div{
+  display:inline-block;
+}
+.tit{
+  clear:both;
+  line-height: 20px;
+}
+.tit h5{
+  display: inline-block;
+  float:left;
+  color:#fff;
+  font-size:20px;
+}
+.tit a{
+   display: inline-block;
+    float:right;
+    width: 16px;
+    height: 16px;
+    box-sizing: border-box;
+    background: url(../images/more_icon_main_w.png) center no-repeat;
+}
+.tit span{
+
+}
+.cont{
+  width:295px;
+}
+.right{
+  width:920px;
+  margin-left:20px;
+}
+.left{
+  width:295px;
+}
+.top{
+  height:129px;
+}
+.btm{
+  height:245px;
+}
+.calendar .cont{
+  border:1px solid #dfdfdf;
+}
+.calendar .cont-top{
+
+}
+
+
+
+
+
+
+
+
 
 .footer{background:#f1f1f1;}
 .footer__inner-top{background:#4a5862}
@@ -621,7 +674,7 @@ header .gnb ul li a:hover span {
   width: 223px;
   height: 36px;
   padding: 0 18px 0 14px;
-  background: #fff url(/resource/templete/nl/common/img/common/arrow_down.png) 100% 50% no-repeat;
+  background: #fff url(../images/arrow_down.png) 100% 50% no-repeat;
   font-size: 15px;
   color: #000;
   vertical-align: middle;
