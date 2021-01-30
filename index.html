@@ -194,7 +194,7 @@
             <div class="covid">
                 <div class="covid-inner">
                     <a href="">
-                        <span>코로나바이러스감염증 
+                        <span>코로나바이러스감염증
                             <b>도서관을 위한 참고 서비스</b>
                             <span class="link">바로가기</span>
                         </span>
@@ -270,157 +270,14 @@
            <div class="public">
                <div class="public_inner">
                    <div class="public-top">
-                    <!-- 도서관 일정 -->
-                        <div class="calendar">
-                            <h5><strong>도서관 일정</strong></h5>
-                            <a href="" class=" plus"><span class="hide">더보기</span></a>
-                            <div class="calendar_inner">
-                                <div id="library_schedule" class="library_schedule">
-                                    <!-- Empty Layout -->
-                                    <div class="control_wrap">
-                                        <button type="button" class="btn__layer btn_month" data-layer="layer_schedule">
-                                            <strong class="month">2021년 01월</strong>
-                                        </button>
-                                        <div class="controller">
-                                            <button onclick="fn_changeMonth(&#39;0&#39;); return false;" class="btn btn_prev">
-                                                <span class="sp_main">이전</span>
-                                                12월
-                                            </button>
-                                            <button onclick="fn_changeMonth(&#39;1&#39;); return false;" class="btn btn_next">
-                                                02월
-                                                <span class="sp_main">다음</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="table_wrap">
-                                        <table>
-                                            <caption class="hide">도서관 행사일정 - 일, 월, 화, 수, 목, 금, 토 순서로 구성된 달력 표</caption>
-                                            <thead>
-                                                <tr>
-                                                    <!-- <th scope="col" class="sun"><span>일</span></th>
-                                                    <th scope="col"><span>월</span></th>
-                                                    <th scope="col"><span>화</span></th>
-                                                    <th scope="col"><span>수</span></th>
-                                                    <th scope="col"><span>목</span></th>
-                                                    <th scope="col"><span>금</span></th>
-                                                    <th scope="col" class="sat"><span>토</span></th> -->
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <input type="hidden" value="4">
-                                                    <td id="2021-01-17" class="dispDay sun">
-                                                        <div class="day">
-                                                            <div class="inner"><button type="button" class="closed_temporary" data-tooltip-text="임시휴관일"><strong>17</strong><span class="hide">임시휴관일</span></button></div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="2021-01-18" class="dispDay ">
-                                                        <div class="day">
-                                                            <div class="inner"><button type="button" class="closed_temporary" data-tooltip-text="임시휴관일"><strong>18</strong><span class="hide">임시휴관일</span></button></div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="2021-01-19" class="dispDay ">
-                                                        <div class="day">
-                                                            <!--
-                                                                                        [D]일정별 클래스
-                                                                                        정기휴관일인 경우 : closed 클래스
-                                                                                        임시휴관일인 경우 : closed_temporary 클래스
-                                                                                        교육인 경우 : educate 클래스
-                                                                                        클래스 대체텍스트 추가 요청드립니다.
-                                                                                        -->
-                                                            <div class="inner">
-                                                                <strong>19</strong>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="2021-01-20" class="dispDay today">
-                                                        <div class="day">
-                                                            <!--
-                                                                                        [D]일정별 클래스
-                                                                                        정기휴관일인 경우 : closed 클래스
-                                                                                        임시휴관일인 경우 : closed_temporary 클래스
-                                                                                        교육인 경우 : educate 클래스
-                                                                                        클래스 대체텍스트 추가 요청드립니다.
-                                                                                        -->
-                                                            <div class="inner">
-                                                                <strong>20</strong>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="2021-01-21" class="dispDay ">
-                                                        <div class="day">
-                                                            <!--
-                                                                                        [D]일정별 클래스
-                                                                                        정기휴관일인 경우 : closed 클래스
-                                                                                        임시휴관일인 경우 : closed_temporary 클래스
-                                                                                        교육인 경우 : educate 클래스
-                                                                                        클래스 대체텍스트 추가 요청드립니다.
-                                                                                        -->
-                                                            <div class="inner">
-                                                                <strong>21</strong>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="2021-01-22" class="dispDay ">
-                                                        <div class="day">
-                                                            <!--
-                                                                                        [D]일정별 클래스
-                                                                                        정기휴관일인 경우 : closed 클래스
-                                                                                        임시휴관일인 경우 : closed_temporary 클래스
-                                                                                        교육인 경우 : educate 클래스
-                                                                                        클래스 대체텍스트 추가 요청드립니다.
-                                                                                        -->
-                                                            <div class="inner">
-                                                                <strong>22</strong>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td id="2021-01-23" class="dispDay sat">
-                                                        <div class="day">
-                                                            <!--
-                                                                                        [D]일정별 클래스
-                                                                                        정기휴관일인 경우 : closed 클래스
-                                                                                        임시휴관일인 경우 : closed_temporary 클래스
-                                                                                        교육인 경우 : educate 클래스
-                                                                                        클래스 대체텍스트 추가 요청드립니다.
-                                                                                        -->
-                                                            <div class="inner">
-                                                                <strong>23</strong>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-
-                                    <form name="calForm" id="calForm" method="post">
-                                        <input type="hidden" name="act" id="act">
-                                        <input type="hidden" name="schOpt4" id="schOpt4" value="4">
-                                        <input type="hidden" name="schOpt1" id="schOpt1" value="2021">
-                                        <input type="hidden" name="schOpt2" id="schOpt2" value="01">
-                                        <input type="hidden" name="siteCode" id="siteCode" value="NL">
-                                        <input type="hidden" name="schSitecode" id="schSitecode" value="NL">
-                                    </form>
-                                    <!-- //Empty Layout -->
-                                </div>
-                            </div>
-                            <div class="notify_wrap">
-                                <ul class="notify_list">
-                                    <li class="notify_item closed">정기휴관</li>
-                                    <li class="notify_item closed_temporary">임시휴관</li>
-                                    <li class="notify_item educate">전시/교육</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- //도서관 일정 -->
+                   
+    
                    </div><!-- <div class="public-top"> -->
                    <div class="public-btm">
 
                    </div><!-- <div class="public-btm"> -->
                </div>
-           </div>      
+           </div>
         </div><!-- <div class="contnets">-->
     </div><!-- <div id="container" class="container"> -->
 </body>
