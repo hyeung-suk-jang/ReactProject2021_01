@@ -18,6 +18,7 @@ function App() {
     authService.onAuthStateChanged((user) => {
       if (user) {
         console.log("setMe");
+        console.log(authService.currentUser.displayName);
         setMe(authService.currentUser.displayName);
       } else {
         console.log("NO USER");
