@@ -903,9 +903,11 @@ legend,
 }
 
 .result{
-  border: 1px solid red;
+  border-bottom: 1px solid #ccc;
   padding: 20px 0 17px 30px;
-  
+}
+.result:first-child{
+  border-top: 1px solid #ccc;
 }
 .result:hover{
   background-color: #f9f9f9;
@@ -952,5 +954,19 @@ legend,
   color:#FFF;
   font-size: 15px;
   background-color: #cc5656;
+}
 
+.mylib{
+  border-bottom: 1px solid #ccc;
+  padding: 20px 0 17px 30px;
+}
+.mylib:first-child{
+  border-top: 1px solid #ccc;
+}
+.mylib:hover{
+  background-color: #f9f9f9;
+}
+
+.mylib.title{
+  font-size: 18px;
 }
