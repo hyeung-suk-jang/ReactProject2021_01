@@ -6,12 +6,14 @@ import Login from "../Login";
 import Detail from "../Detail";
 import SignUp from "../SignUp/SignUp";
 import MyLibrary from "../MyLibrary";
+import Footer from "../Footer/Footer";
 
 const Home = ({ history, me }) => {
   return (
     <>
       <Header history={history} me={me} />
       <Switch>
+        {/* container --> */}
         <Route
           exact
           path="/"
@@ -27,7 +29,9 @@ const Home = ({ history, me }) => {
           path="/mylib"
           render={() => <MyLibrary history={history} me={me} />}
         />
+        {/* <-- container*/}
       </Switch>
+      <Footer />
     </>
   );
 };

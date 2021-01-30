@@ -1,21 +1,15 @@
 .signUp {
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translateX(-50%);
   width: 70%;
   height: auto;
   padding: 5px;
   font-size: 0.7rem;
   border: 1px solid black;
-  margin: 0 0 23px 0;
+  margin: 100px auto;
 }
 
 .title {
   position: absolute;
-  width: inherit;
-  top: 55%;
-  transform: translateX(100%);
+  transform: translate(170%, 170%);
 }
 
 .signUp .wrapper {
@@ -69,10 +63,9 @@
 
 .signUp form .submit {
   position: absolute;
-  bottom: -5%;
-  margin: 0 0 20px 0;
   left: 50%;
-  transform: translate(-50%, 150%);
+  bottom: -105%;
+  transform: translateX(-50%);
 }
 
 .signUp .wrapper .input input {

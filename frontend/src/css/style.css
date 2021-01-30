@@ -663,3 +663,241 @@ header .gnb ul li .a_on span {
   max-width: 1240px;
   margin: 0 auto;
 }
+
+.footer {
+  background: #f1f1f1;
+}
+.footer__inner-top {
+  background: #4a5862;
+}
+.footer__inner-top .inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.footer__inner-top .inner:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.footer__inner-bottom {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 0 46px;
+}
+.footer__inner-bottom .inner:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.policy-wrap {
+  float: left;
+}
+.mo_policy-wrap {
+  display: none;
+}
+.policy-wrap .policy__list {
+  font-size: 0;
+}
+.policy-wrap .policy__item {
+  display: inline-block;
+  margin-right: 14px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #000;
+}
+.policy-wrap .policy__item:first-child a {
+  padding-left: 0;
+  color: #ab2c08;
+  font-weight: 700;
+}
+.policy-wrap .policy__item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 8px 10px 9px;
+
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.family-wrap {
+  overflow: hidden;
+  text-align: right;
+}
+.ir_text,
+legend,
+.blind {
+  overflow: hidden;
+  position: absolute;
+  border: 0;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.family-wrap .family-select-wrap {
+  width: 223px;
+  height: 36px;
+  padding: 0 18px 0 14px;
+  /* background: #fff url("/resource/templete/nl/common/img/common/arrow_down.png")
+    100% 50% no-repeat; */
+  font-size: 15px;
+  color: #000;
+  vertical-align: middle;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.family-wrap .site-go {
+  height: 36px;
+  padding: 0 10px;
+  font-size: 15px;
+  color: #fff;
+  background: #7d7d7d;
+}
+.info-wrap {
+  position: relative;
+  margin-top: 26px;
+  /* padding-left: 212px; */
+  padding-left: 250px;
+}
+
+.footer-logo {
+  position: absolute;
+  top: 3px;
+  left: 1px;
+  /* width: 212px; */
+  width: 250px;
+  height: 50px;
+  vertical-align: top;
+  background: url("../assets/images/layout.png") 0 -222px no-repeat;
+}
+.footer-logo .sp_logo {
+  height: 49px;
+  width: 213px;
+}
+.contact__list {
+  float: left;
+  margin: -12px 0 0 30px;
+}
+
+.contact__item:first-child {
+  margin-top: 0;
+}
+.contact__item {
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #515151;
+}
+
+.contact__item .tel {
+  display: inline-block;
+}
+.contact__item .lnk_tel {
+  display: none;
+}
+
+.certificate__list {
+  overflow: hidden;
+  font-size: 0;
+  text-align: right;
+}
+
+.certificate__list .certificate__item:first-child {
+  margin: 0;
+}
+
+.certificate__list .item--wa {
+  width: 68px;
+}
+.certificate__list .certificate__item {
+  display: inline-block;
+  margin-left: 16px;
+  vertical-align: middle;
+}
+.certificate__list .item--open {
+  width: 77px;
+}
+
+/* 안내 영역 */
+.footer-util__list {
+  float: left;
+  font-size: 0;
+}
+.footer-util__item {
+  display: inline-block;
+  position: relative;
+  margin: 16px 17px 16px 0;
+  padding-right: 18px;
+  font-size: 17px;
+  color: #fff;
+}
+.footer-util__item a {
+  color: #fff;
+}
+.footer-util__item:before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 1px;
+  height: 18px;
+  background: #717e87;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: "";
+}
+.footer-util__item:last-child {
+  margin-right: 0;
+  padding-right: 0;
+}
+.footer-util__item:last-child:before {
+  display: none;
+}
+.footer-util__item .fot_mo {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .footer-util__item .fot_mo {
+    display: block;
+  }
+  .footer-util__item .fot_pc {
+    display: none;
+  }
+  .footer-util__item {
+    padding-right: 10px;
+  }
+}
+/* 안내 영역 */
+.footer-sns__list {
+  float: right;
+  font-size: 0;
+}
+.footer-sns__item {
+  display: inline-block;
+}
+.footer-sns__item:first-child {
+  margin-left: 0;
+}
+.footer-sns__item a {
+  display: block;
+  padding: 12px 5px 17px;
+}
+.footer-sns__item a .ico {
+  width: 25px;
+  height: 25px;
+}
+.footer-sns__item .instagram .ico {
+  background-position: 0 -161px;
+}
+.footer-sns__item .blog .ico {
+  background-position: -27px -161px;
+}
+.footer-sns__item .facebook .ico {
+  background-position: -54px -161px;
+}
+.footer-sns__item .twitter .ico {
+  background-position: -81px -161px;
+}
+.footer-sns__item .youtube .ico {
+  background-position: -108px -161px;
+}

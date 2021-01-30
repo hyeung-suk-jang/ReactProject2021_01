@@ -9,6 +9,7 @@ const LNB = ({ me }) => {
   const onLogOutClick = () => {
     alert("로그아웃 하시겠습니까?");
     authService.signOut();
+    location.reload()
     dispatch({ type: LOG_OUT_REQUEST });
   };
 

@@ -14,7 +14,7 @@ const MyLibrary = ({ me }) => {
   console.log(borrowBooks);
   return (
     <div>
-      <h1>내 서제</h1>
+      <h1>내 서재</h1>
       {borrowBooks.map((b) => (
         <MyBooks title={b.title} key={b.id} />
       ))}

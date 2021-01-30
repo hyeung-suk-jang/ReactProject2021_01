@@ -91,7 +91,7 @@ const SignUp = ({ history }) => {
 
   return (
     <>
-      <h1 className={styles.title}>회원가입</h1>
+      <h3 className={styles.title}>회원가입</h3>
       <div className={styles.signUp}>
         {/*아이디 중복체크 modal*/}
         {modal}

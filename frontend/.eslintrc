@@ -36,7 +36,8 @@
       "react/prop-types":"off",
       "no-unused-vars":"off",
       "import/no-extraneous-dependencies":"off",
-      "object-shorthand":"off"
+      "object-shorthand":"off",
+      "react/jsx-no-target-blank":"off"
      
     }
   }
