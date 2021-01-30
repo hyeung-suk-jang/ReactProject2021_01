@@ -569,6 +569,7 @@ header .gnb ul li a:hover span {
   display:inline-block;
 }
 .tit{
+  height:40px;
   clear:both;
   line-height: 20px;
 }
@@ -607,14 +608,22 @@ header .gnb ul li a:hover span {
 }
 .calendar .cont{
   border:1px solid #dfdfdf;
+  background:#fff;
 }
 .calendar .cont-top{
 
 }
-
-
-
-
+.calendar .cont-top h5{
+  color:#4f4f4f;
+}
+.participation .cont{
+  width:100%;
+}
+.participation .cont ul{
+  overflow: hidden;
+}
+.notice{margin-top: 50px;}
+.collection{margin-top: 50px;}
 
 
 
