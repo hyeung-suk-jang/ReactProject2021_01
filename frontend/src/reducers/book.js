@@ -3,10 +3,10 @@ import produce from 'immer';
 export const initialState = {
   books: [],
   borrowBooks: [
-    {id:'000000000',title:'DummyBook1'},
-    {id:'000000001',title:'DummyBook2'},
-    {id:'000000002',title:'DummyBook3'},
-    {id:'000000003',title:'DummyBook4'},
+    // {id:'000000000',title:'DummyBook1'},
+    // {id:'000000001',title:'DummyBook2'},
+    // {id:'000000002',title:'DummyBook3'},
+    // {id:'000000003',title:'DummyBook4'},
   ],
   loadBooksLoading: false,
   loadBooksDone: false,

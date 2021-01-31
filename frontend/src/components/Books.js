@@ -6,10 +6,10 @@ import { BORROW_BOOK_REQUEST, RETURN_BOOK_REQUEST } from '../reducers/book'
 const Books = ({detail}) => {
   const history = useHistory()
     const dispatch = useDispatch()
-    const {me} = useSelector(state => state.user)
+    const {isLoggedInDone} = useSelector(state => state.user)
     const {borrowBooks} = useSelector(state => state.book)
     const onClickBorrow = useCallback(() =>{
-        if (!me) {
+        if (!isLoggedInDone) {
           alert("로그인 해주세요");
           history.push('/login')
         } else {
@@ -23,7 +23,7 @@ const Books = ({detail}) => {
         }
     })
     const onClickReturn = useCallback(() =>{
-        if (!me) {
+        if (!isLoggedInDone) {
           alert("로그인 해주세요");
           history.push('/login')
         } else {

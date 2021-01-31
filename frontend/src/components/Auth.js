@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, use } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import useInput from "../hooks/useInput";
 import { LOG_IN_REQUEST } from "../reducers/user";
 
@@ -25,28 +25,68 @@ const Auth = () => {
   const toggleAccount = () => setNewAccount((prev) => !prev);
 
   return (
-    <div>
+    <div id="container" className="container">
+        <div className="container_inner">
+    <div className="menu">
+    <h2>회원서비스</h2>
+    <ul>
+        <li><a href="">회원가입</a></li>
+        <li><a href="">회원정보수정</a></li>
+        <li><a href="">내서재</a></li>
+    </ul>
+</div>
+
+    <div className="sub_cont">
+      <div className="tit">
+        <h3>로그인</h3>
+        <span>
+          <input type="radio" checked="checked" />
+          <label>통합회원</label>
+        </span>
+        <span>
+          <input type="radio" />
+          <label>기관회원</label>
+        </span>
+      </div>
       <form onSubmit={onSubmit}>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          required
-          value={email}
-          onChange={onChangeEmail}
-        />
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          required
-          value={password}
-          onChange={onChangePassword}
-        />
-        <input type="submit" value={newAccount ? "Create Account" : "login"} />
+        <div className="user_id">
+          <input
+            name="email"
+            type="text"
+            placeholder="이메일"
+            required
+            value={email}
+            onChange={onChangeEmail}
+          />
+        </div>
+        <div className="password">
+          <input
+            name="password"
+            type="password"
+            placeholder="비밀번호"
+            required
+            value={password}
+            onChange={onChangePassword}
+          />
+        </div>
+        <span className="save">
+                    <input type="checkbox"/>
+                    <label>아이디저장</label>
+        </span>
+
+        <div className="login_btn">
+        <input type="submit" value="로그인" />
         {error}
+        </div>
+        <div className="user">
+                    <a href="">아이디 찾기</a>
+                    <a href="">비밀번호 찾기</a>
+                    <a href="">회원가입</a>
+                </div>
+
       </form>
-      <span onClick={toggleAccount}> {newAccount ? "Login" : "Sigin in"}</span>
+    </div>
+    </div>
     </div>
   );
 };

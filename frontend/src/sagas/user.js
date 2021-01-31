@@ -14,6 +14,9 @@ import {
   LOG_IN_REQUEST,
   LOG_IN_FAILURE,
   LOG_IN_SUCCESS,
+  IS_LOGGED_IN_REQUEST,
+  IS_LOGGED_IN_FAILURE,
+  IS_LOGGED_IN_SUCCESS,
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
   LOG_OUT_FAILURE,
@@ -27,79 +30,94 @@ import {
 } from "../reducers/user";
 
 
-async function signUpAPI(data) {
-  let userID;
-  try {
-    const cred = await authService.createUserWithEmailAndPassword(
-      data.email,
+
+
+// async function getUserID(ID) {
+//   let sameId;
+//   try {
+//     //return 유저아이디목록
+//     const userId = await axios.get(
+//       "https://nllogin-12589-default-rtdb.firebaseio.com/userID.json"
+//     );
+
+//     sameId = Object.keys(userId.data).filter((id) => {
+//       return id === ID;
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+//   return sameId.length === 0 ? true : false;
+// }
+
+// function* signUpIdCheck(action) {
+//   //회원가입시 아이디 중복체크하는 함수
+
+//   try {
+//     const result = yield call(getUserID, action.ID);
+//     result
+//       ? yield put({
+//           type: ID_CHECK_AVAILABLE,
+//         })
+//       : yield put({
+//           type: ID_CHECK_EXISTING,
+//         });
+//   } catch (err) {
+//     yield put({
+//       type: ID_CHECK_FAILURE,
+//       error: err.response.data,
+//     });
+//   }
+// }
+// async function signUpAPI(data) {
+//   let userID;
+//   try {
+//     const cred = await authService.createUserWithEmailAndPassword(
+//       data.email,
+//       data.password
+//     );
+//     cred.user.updateProfile({
+//       displayName: data.userID,
+//     });
+//     const userId = {
+//       [data.userID]: data.userID,
+//     };
+
+//     const addResult = await axios.post(
+//       "https://nllogin-12589-default-rtdb.firebaseio.com/userID.json",
+//       userId
+//     );
+
+//     userID = addResult && authService.currentUser.displayName;
+
+//     return userID;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+  function signUpAPI(data) {
+    return authService.createUserWithEmailAndPassword(
+      data.usermail,
       data.password
     );
-    cred.user.updateProfile({
-      displayName: data.userID,
-    });
-    const userId = {
-      [data.userID]: data.userID,
-    };
-
-    const addResult = await axios.post(
-      "https://nllogin-12589-default-rtdb.firebaseio.com/userID.json",
-      userId
-    );
-
-    userID = addResult && authService.currentUser.displayName;
-
-    return userID;
-  } catch (err) {
-    console.log(err);
   }
-}
-
-async function getUserID(ID) {
-  let sameId;
-  try {
-    //return 유저아이디목록
-    const userId = await axios.get(
-      "https://nllogin-12589-default-rtdb.firebaseio.com/userID.json"
-    );
-
-    sameId = Object.keys(userId.data).filter((id) => {
-      return id === ID;
-    });
-  } catch (err) {
-    console.log(err);
-  }
-  return sameId.length === 0 ? true : false;
-}
-
-function* signUpIdCheck(action) {
-  //회원가입시 아이디 중복체크하는 함수
-
-  try {
-    const result = yield call(getUserID, action.ID);
-    result
-      ? yield put({
-          type: ID_CHECK_AVAILABLE,
-        })
-      : yield put({
-          type: ID_CHECK_EXISTING,
-        });
-  } catch (err) {
-    yield put({
-      type: ID_CHECK_FAILURE,
-      error: err.response.data,
-    });
-  }
-}
-
 function* signUp(action) {
-  const signUpResult = yield call(signUpAPI, action.data);
-
+  let result = yield call(signUpAPI, action.data);
   try {
+    console.log('이메일 가입 성공')
+    console.log('before Update',result)
+   result.user.updateProfile({
+      displayName: action.data.username
+    })  
+    console.log('After Update',result)
+
     yield put({
       type: SIGN_UP_SUCCESS,
-      userID: authService.currentUser.displayName,
+      username: action.data.username,
+      data: result
     });
   } catch (err) {
+    console.log(err)
     yield put({
       type: SIGN_UP_FAILURE,
       error: err.response.data,
@@ -107,6 +125,9 @@ function* signUp(action) {
   }
 }
 
+// function loginAPI(data) {
+//   return authService.signInWithEmailAndPassword(data.email, data.password);
+// }
 function loginAPI(data) {
   return authService.signInWithEmailAndPassword(data.email, data.password);
 }
@@ -120,8 +141,24 @@ function* login(action) {
       data: result.user.uid,
     });
   } catch (err) {
+    console.log("Login Result", err);
     yield put({
       type: LOG_IN_FAILURE,
+      error: err.response.data,
+    });
+  }
+}
+
+
+function* isLoggedIn(action) {
+  try {
+    yield put({
+      type: IS_LOGGED_IN_SUCCESS,
+      data: action.data,
+    });
+  } catch (err) {
+    yield put({
+      type: IS_LOGGED_IN_FAILURE,
       error: err.response.data,
     });
   }
@@ -144,12 +181,16 @@ function* logout() {
   }
 }
 
-function* watchIdCheck() {
-  yield takeLatest(ID_CHECK_REQUEST, signUpIdCheck);
-}
+// function* watchIdCheck() {
+//   yield takeLatest(ID_CHECK_REQUEST, signUpIdCheck);
+// }
 
 function* watchLogIn() {
   yield takeLatest(LOG_IN_REQUEST, login);
+}
+
+function* watchIsLoggedIn() {
+  yield takeLatest(IS_LOGGED_IN_REQUEST, isLoggedIn);
 }
 
 function* watchLogOut() {
@@ -163,8 +204,9 @@ function* watchSignUp() {
 export default function* userSaga() {
   yield all([
     fork(watchLogIn),
+    fork(watchIsLoggedIn),
     fork(watchLogOut),
-    fork(watchIdCheck),
+    // fork(watchIdCheck),
     fork(watchSignUp),
   ]);
 }

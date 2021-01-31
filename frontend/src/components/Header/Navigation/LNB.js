@@ -4,26 +4,29 @@ import { Link } from "react-router-dom";
 import { LOG_OUT_REQUEST } from "../../../reducers/user";
 import { authService } from "../../../firebase/fb";
 
-const LNB = ({ me }) => {
+const LNB = ({history}) => {
   const dispatch = useDispatch();
+  const {isLoggedInDone, userName} = useSelector((state) => state.user)
   const onLogOutClick = () => {
     alert("로그아웃 하시겠습니까?");
     authService.signOut();
     location.reload()
+    history.go('/')
     dispatch({ type: LOG_OUT_REQUEST });
   };
 
+  console.log('Header',)
   return (
     <nav className="lnb">
       <ul className="">
-        {me ? (
+        {isLoggedInDone ? (
           <>
             <li>
               <button onClick={onLogOutClick}>LogOut</button>
             </li>
             <li>
               <Link to="/">
-                <span>{me}님</span>
+                <span>{userName ? userName : authService.currentUser.displayName}님</span>
               </Link>
             </li>
             <li>

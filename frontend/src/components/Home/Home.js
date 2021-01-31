@@ -8,28 +8,28 @@ import SignUp from "../SignUp/SignUp";
 import MyLibrary from "../MyLibrary";
 import Footer from "../Footer/Footer";
 
-const Home = ({ history, me }) => {
+const Home = ({ history, isLoggedIn }) => {
   return (
     <>
-      <Header history={history} me={me} />
+      <Header history={history} isLoggedIn={isLoggedIn} />
       <Switch>
         {/* container --> */}
         <Route
           exact
           path="/"
-          render={() => <Main me={me} history={history} />}
+          render={() => <Main history={history} />}
         />
-        <Route exact path="/login" render={() => <Login me={me} />} />
+        <Route exact path="/login" render={() => <Login />} />
         <Route exact path="/detail:product" component={Detail} />
         <Route
         exact
           path="/signup"
-          render={() => <SignUp history={history} me={me} />}
+          render={() => <SignUp history={history} />}
         />
         <Route
         exact
           path="/mylib"
-          render={() => <MyLibrary history={history} me={me} />}
+          render={() => <MyLibrary history={history} />}
         />
         {/* <-- container*/}
       </Switch>

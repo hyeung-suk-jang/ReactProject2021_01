@@ -3,10 +3,10 @@ import LNB from "./Navigation/LNB";
 import GNB from "./Navigation/GNB";
 import HeaderLogo from "./Navigation/HeaderLogo";
 
-const Header = ({ history, me }) => (
+const Header = ({ history, isLoggedIn, me }) => (
   <div className="header-wrap">
     <header>
-      <LNB className="lnb" history={history} me={me} />
+      <LNB className="lnb" history={history} isLoggedIn={isLoggedIn} me={me} />
       <HeaderLogo className="logo" />
       <GNB className="gnb" />
       {/* <div class="library_info">

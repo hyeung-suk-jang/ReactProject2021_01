@@ -1,101 +1,112 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useCallback, useState } from "react";
 import styles from "./SignUp.module.css";
-import useSignUp from "../../hooks/SignUp/useSignUp";
-import useModal from "../../hooks/useModal";
-import Modal from "../UI/Modal";
-import { signUpRequestAction } from "../../reducers/user";
+import useInput from "../../hooks/useInput";
+import { useDispatch, useSelector } from "react-redux";
+import { SIGN_UP_REQUEST } from "../../reducers/user";
 
 const SignUp = ({ history }) => {
-  const dispatch = useDispatch();
-  const { idAvailable } = useSelector((state) => state.user);
-  const [open, openModal, closeModal] = useModal(null);
-  const [value, setValue, setIdAvailable, initInput, initIdChecked] = useSignUp(
-    ""
-  );
-  const [submitClicked, setSubmitClicked] = useState(null);
-  const [submitErr, setSubmitErr] = useState(null);
+  const [username, onChangeUserName] = useInput('')
+  const [birth, onChangeBirth] = useInput('')
+  const [gender, setGender] = useState(null);
+  const onChangeGender = useCallback((e) =>{
+    setGender(e.target.value)
+  })
+  const [password, onChangePassword] = useInput('')
+  const [passwordCheck, setPasswordCheck] = useState('')
+  const [passwordError, setPasswordError] = useState(false);
 
-  useEffect(() => {
-    value.pwValidated === false && initInput("password");
-    value.birthValidated === false && initInput("birth");
-  }, [open]);
+  const onChangePasswordCheck = useCallback((e) => {
+    setPasswordError(e.target.value !== password);
+    setPasswordCheck(e.target.value);
+  }, [password]);
 
-  const initSubmit = () => {
-    setSubmitClicked(null);
-    setSubmitErr(null);
-  };
+  const [zipcode, onChangeZipcode] = useInput('')
+  const [address, onChangeAddress] = useInput('')
+  const [elseAddress, onChangeElseAddress] = useInput('')
+  // const [tel_first, setTel_First] = useState(null);
+  // const onChangeTel_First = useCallback((e) => {
+  //   console.log(e.target.value);
+  //   setTel_First(e.target.value);
+  // }, []);
+  const [tel_first, onChangeTel_First] = useInput(null)
+  const [tel_middle, onChangeTel_Middle] = useInput('');
+  const [tel_last, onChangeTel_Last] = useInput('');
+//   let fullPhone = tel_first + tel_middle + tel_last
+  const fullTel = (tel_first, tel_middle, tel_last) => tel_first+tel_middle+tel_last
+  const [email, onChangeEmail] = useInput('')
+  const [domain, onChangeDomain] = useInput(null)
+  // const [domain, setDomain] = useState(null)
+  // const onChangeDomain = useCallback((e) =>{
+  //   setDomain(e.target.value)
+  // })
+//   let fullEmail = email+'@' + domain
+  const fullEmail = (email,domain) => email+'@'+domain
+  const [userType, onChangeUserType] = useInput(false)
+  const [sms, onChangeSms] = useInput(false)
 
-  const onIdCheck = () => {
-    setIdAvailable();
-    openModal();
-    initIdChecked();
-    initSubmit();
-  };
+  const dispatch = useDispatch()
+  const {isLoggedInDone} = useSelector(state => state.user)
 
-  const onSubmitForm = () => {
-    setSubmitClicked(true);
-
-    if (value.pwValidated && value.birthValidated && idAvailable) {
-      console.log(typeof value.emailDomain);
-      console.log(value.email + "@" + value.emailDomain);
-      const signUpData = {
-        email: value.email + "@" + value.emailDomain,
-        password: value.password,
-        userID: value.ID,
-      };
-      dispatch(signUpRequestAction(signUpData));
-      console.log("send data");
-      setSubmitClicked(true);
-
-      history.replace("/");
-    } else {
-      setSubmitClicked(true);
-      setSubmitErr(true);
-      openModal();
-    }
-  };
-
-  let modal;
-
-  if (open !== null) {
-    if (value.idChecked !== null) {
-      if (idAvailable) {
-        modal = (
-          <Modal show={open} onClick={closeModal}>
-            사용할 수 있는 아이디 입니다
-          </Modal>
-        );
-      } else if (
-        submitErr !== true &&
-        idAvailable !== true &&
-        value.idChecked === true
-      ) {
-        modal = (
-          <Modal show={open} onClick={closeModal}>
-            이미 존재하는 아이디 입니다
-          </Modal>
-        );
-      }
-    }
-
-    if (submitErr !== null && submitClicked) {
-      modal = (
-        <Modal show={open} onClick={closeModal}>
-          양식을 전부 기입해주세요 <br />
-          (바르지 않은 입력값은 자동으로 삭제됩니다)
-        </Modal>
-      );
-    }
+  if(isLoggedInDone){
+    alert("이미 로그인 하셨습니다");
+    history.goBack();
   }
+
+  const onSubmit = useCallback((e) =>{
+    e.preventDefault()
+    if (password !== passwordCheck) {
+      return setPasswordError(true);
+    }
+    dispatch({
+        type: SIGN_UP_REQUEST,
+        data:{
+            usermail: fullEmail(email,domain),
+            password,
+            username
+        }
+    })
+    history.push('/')
+  },[username, birth, gender, password, passwordCheck, zipcode, address, elseAddress, fullTel, fullEmail, userType, sms])
+  // let modal;
+
+  // if (open !== null) {
+  //   if (value.idChecked !== null) {
+  //     if (idAvailable) {
+  //       modal = (
+  //         <Modal show={open} onClick={closeModal}>
+  //           사용할 수 있는 아이디 입니다
+  //         </Modal>
+  //       );
+  //     } else if (
+  //       submitErr !== true &&
+  //       idAvailable !== true &&
+  //       value.idChecked === true
+  //     ) {
+  //       modal = (
+  //         <Modal show={open} onClick={closeModal}>
+  //           이미 존재하는 아이디 입니다
+  //         </Modal>
+  //       );
+  //     }
+  //   }
+
+  //   if (submitErr !== null && submitClicked) {
+  //     modal = (
+  //       <Modal show={open} onClick={closeModal}>
+  //         양식을 전부 기입해주세요 <br />
+  //         (바르지 않은 입력값은 자동으로 삭제됩니다)
+  //       </Modal>
+  //     );
+  //   }
+  // }
 
   return (
     <>
       <h3 className={styles.title}>회원가입</h3>
       <div className={styles.signUp}>
         {/*아이디 중복체크 modal*/}
-        {modal}
-        <form>
+        {/* {modal} */}
+        <form onSubmit={onSubmit}>
           {/*성명*/}
           <div className={styles.wrapper}>
             <span>*성명</span>
@@ -103,8 +114,8 @@ const SignUp = ({ history }) => {
               <input
                 type="text"
                 name="name"
-                value={value.name}
-                onChange={setValue}
+                value={username}
+                onChange={onChangeUserName}
                 required
               />
             </div>
@@ -116,8 +127,8 @@ const SignUp = ({ history }) => {
               <input
                 type="text"
                 name="birth"
-                value={value.birth}
-                onChange={setValue}
+                value={birth}
+                onChange={onChangeBirth}
                 required
               />
             </div>
@@ -132,7 +143,7 @@ const SignUp = ({ history }) => {
                 type="radio"
                 name="gender"
                 value="male"
-                onChange={setValue}
+                onChange={onChangeGender}
               />
               <label htmlFor="female">여</label>
               <input
@@ -140,7 +151,7 @@ const SignUp = ({ history }) => {
                 type="radio"
                 name="gender"
                 value="female"
-                onChange={setValue}
+                onChange={onChangeGender}
               />
               <label htmlFor="reject">미동의</label>
               <input
@@ -148,33 +159,8 @@ const SignUp = ({ history }) => {
                 type="radio"
                 name="gender"
                 value="reject"
-                onChange={setValue}
+                onChange={onChangeGender}
               />
-            </div>
-          </div>
-          {/*회원 ID */}
-          <div className={styles.wrapper}>
-            <span>*회원 ID</span>
-            <div className={styles.input}>
-              <input
-                type="text"
-                name="ID"
-                value={value.ID}
-                pattern="(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{6,12}"
-                onChange={setValue}
-                autoComplete="user-name"
-                required
-              />
-              <button
-                type="button"
-                onClick={onIdCheck}
-                disabled={idAvailable ? true : false}
-              >
-                중복확인
-              </button>
-              <span>
-                *아이디는 6~12자리의 영문 또는 숫자 혼용, 특수문자 제외
-              </span>
             </div>
           </div>
           {/*비밀번호*/}
@@ -184,9 +170,9 @@ const SignUp = ({ history }) => {
               <input
                 type="password"
                 name="password"
-                value={value.password}
+                value={password}
                 pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{10,16}"
-                onChange={setValue}
+                onChange={onChangePassword}
                 autoComplete="new-password"
                 required
               />
@@ -203,57 +189,55 @@ const SignUp = ({ history }) => {
               <input
                 type="password"
                 name="passwordCheck"
-                value={value.passwordCheck}
+                value={passwordCheck}
                 pattern="(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{10,16}"
-                onChange={setValue}
+                onChange={onChangePasswordCheck}
                 autoComplete="new-password"
                 required
               />
+            {passwordError && <span style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</span>}
             </div>
           </div>
           {/*우편번호*/}
           <div className={styles.wrapper}>
-            <span>*우편번호</span>
+            <span>우편번호</span>
             <div className={styles.input}>
               {" "}
               <input
                 type="text"
                 name="address"
-                value={value.address}
-                onChange={setValue}
-                required
+                value={zipcode}
+                onChange={onChangeZipcode}
               />
               <button type="button">도로명주소 찾기</button>
             </div>
           </div>
           {/*주소*/}
           <div className={styles.wrapper}>
-            <span>*주소</span>
+            <span>주소</span>
             <div className={styles.input}>
               <input
                 type="text"
                 name="address_detail"
                 size="50"
-                value={value.address_detail}
-                onChange={setValue}
-                required
+                value={address}
+                onChange={onChangeAddress}
               />
               <input
                 type="text"
                 name="address_detail2"
                 size="50"
-                value={value.address_detail2}
-                onChange={setValue}
-                required
+                value={elseAddress}
+                onChange={onChangeElseAddress}
               />
-              <span>*나머지 주소를 입력하세요.</span>
+              <span>나머지 주소를 입력하세요.</span>
             </div>
           </div>
           {/*연락처*/}
           <div className={styles.wrapper}>
             <span>*연락처</span>
             <div className={styles.input}>
-              <select name="tel_first" required onChange={setValue}>
+              <select name="tel_first" required onChange={onChangeTel_First}>
                 <option value={null}>선택</option>
                 <option value="02">02</option>
                 <option value="032">032</option>
@@ -265,20 +249,22 @@ const SignUp = ({ history }) => {
               <input
                 type="tel"
                 name="tel_middle"
-                value={value.tel_middle}
+                value={tel_middle}
                 pattern="[0-9]{3,4}"
                 size="4"
-                onChange={setValue}
+                maxLength='4'
+                onChange={onChangeTel_Middle}
                 required
               />
               -
               <input
                 type="tel"
                 name="tel_last"
-                value={value.tel_last}
+                value={tel_last}
                 pattern="[0-9]{3,4}"
                 size="4"
-                onChange={setValue}
+                maxLength='4'
+                onChange={onChangeTel_Last}
                 required
               />
               <span>
@@ -307,12 +293,12 @@ const SignUp = ({ history }) => {
               <input
                 type="text"
                 name="email"
-                value={value.email}
-                onChange={setValue}
+                value={email}
+                onChange={onChangeEmail}
                 required
               />
               @
-              <select name="emailDomain" onChange={setValue} required>
+              <select name="emailDomain" onChange={onChangeDomain} required>
                 <option value={null}>선택하세요</option>
                 <option value={"naver.com"}>naver.com</option>
               </select>
@@ -327,7 +313,7 @@ const SignUp = ({ history }) => {
                 type="radio"
                 name="userType"
                 value="general"
-                onChange={setValue}
+                onChange={onChangeUserType}
               />
               <label htmlFor="general">일반회원</label>
               <span className="public-officer">
@@ -336,7 +322,7 @@ const SignUp = ({ history }) => {
                   type="radio"
                   name="userType"
                   value="public"
-                  onChange={setValue}
+                  onChange={onChangeUserType}
                 />
                 <label htmlFor="public">정책회원</label>
                 <span>
@@ -346,14 +332,14 @@ const SignUp = ({ history }) => {
                     type="radio"
                     name="userType"
                     value="public-individual"
-                    onChange={setValue}
+                    onChange={onChangeUserType}
                   />
                   <label htmlFor="individual">공무원</label>
                   <input
                     type="radio"
                     name="userType"
                     value="public-institution"
-                    onChange={setValue}
+                    onChange={onChangeUserType}
                   />
                   <label htmlFor="institution">
                     공공기관(일부 정부 부처 포함)
@@ -367,17 +353,19 @@ const SignUp = ({ history }) => {
           <div className={styles.wrapper}>
             <span>*SMS 통보여부(선택)</span>
             <div className={styles.input}>
-              <input id="sms" type="checkbox" name="sms" onChange={setValue} />
+              <input id="sms" type="checkbox" name="sms" onChange={onChangeSms} />
               <label htmlFor="sms">SMS통보 신청</label>
               <span>*신청결과를 휴대전화번호로 알려드립니다</span>
             </div>
           </div>
-          <button
-            className={styles.submit}
-            onClick={(e) => {
-              e.preventDefault();
-              onSubmitForm(e);
-            }}
+          {/* <input
+            type='submit'
+            value='회원가입신청'
+            style={{border:'1px solid #1b1414', marginTop: '12px', fontSize:'15px', padding:'0 10px'}}
+          /> */}
+                      <button
+            style={{border:'1px solid #000', marginTop: '12px', fontSize:'15px', padding:'0 10px'}}
+            type='submit'
           >
             회원가입신청
           </button>
