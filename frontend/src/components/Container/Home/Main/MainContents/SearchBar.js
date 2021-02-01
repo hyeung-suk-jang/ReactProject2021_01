@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import useInput from "../../../hooks/useInput";
-
+import useInput from "../../../../../hooks/useInput";
 
 const SearchBar = () => {
   const history = useHistory();

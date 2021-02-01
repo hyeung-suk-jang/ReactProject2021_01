@@ -29,9 +29,6 @@ import {
   SIGN_UP_FAILURE,
 } from "../reducers/user";
 
-
-
-
 // async function getUserID(ID) {
 //   let sameId;
 //   try {
@@ -95,29 +92,29 @@ import {
 //   }
 // }
 
-  function signUpAPI(data) {
-    return authService.createUserWithEmailAndPassword(
-      data.usermail,
-      data.password
-    );
-  }
+async function signUpAPI(data) {
+  return authService.createUserWithEmailAndPassword(
+    data.usermail,
+    data.password
+  );
+}
 function* signUp(action) {
   let result = yield call(signUpAPI, action.data);
   try {
-    console.log('이메일 가입 성공')
-    console.log('before Update',result)
-   result.user.updateProfile({
-      displayName: action.data.username
-    })  
-    console.log('After Update',result)
+    console.log("이메일 가입 성공");
+    console.log("before Update", result);
+    result.user.updateProfile({
+      displayName: action.data.username,
+    });
+    console.log("After Update", result);
 
     yield put({
       type: SIGN_UP_SUCCESS,
       username: action.data.username,
-      data: result
+      data: result,
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     yield put({
       type: SIGN_UP_FAILURE,
       error: err.response.data,
@@ -148,7 +145,6 @@ function* login(action) {
     });
   }
 }
-
 
 function* isLoggedIn(action) {
   try {

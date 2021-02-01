@@ -1,72 +1,92 @@
 import React, { useCallback, useState } from "react";
 import styles from "./SignUp.module.css";
-import useInput from "../../hooks/useInput";
+import useInput from "../../../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { SIGN_UP_REQUEST } from "../../reducers/user";
+import { SIGN_UP_REQUEST } from "../../../reducers/user";
 
 const SignUp = ({ history }) => {
-  const [username, onChangeUserName] = useInput('')
-  const [birth, onChangeBirth] = useInput('')
+  const [username, onChangeUserName] = useInput("");
+  const [birth, onChangeBirth] = useInput("");
   const [gender, setGender] = useState(null);
-  const onChangeGender = useCallback((e) =>{
-    setGender(e.target.value)
-  })
-  const [password, onChangePassword] = useInput('')
-  const [passwordCheck, setPasswordCheck] = useState('')
+  const onChangeGender = useCallback((e) => {
+    setGender(e.target.value);
+  });
+  const [password, onChangePassword] = useInput("");
+  const [passwordCheck, setPasswordCheck] = useState("");
   const [passwordError, setPasswordError] = useState(false);
 
-  const onChangePasswordCheck = useCallback((e) => {
-    setPasswordError(e.target.value !== password);
-    setPasswordCheck(e.target.value);
-  }, [password]);
+  const onChangePasswordCheck = useCallback(
+    (e) => {
+      setPasswordError(e.target.value !== password);
+      setPasswordCheck(e.target.value);
+    },
+    [password]
+  );
 
-  const [zipcode, onChangeZipcode] = useInput('')
-  const [address, onChangeAddress] = useInput('')
-  const [elseAddress, onChangeElseAddress] = useInput('')
+  const [zipcode, onChangeZipcode] = useInput("");
+  const [address, onChangeAddress] = useInput("");
+  const [elseAddress, onChangeElseAddress] = useInput("");
   // const [tel_first, setTel_First] = useState(null);
   // const onChangeTel_First = useCallback((e) => {
   //   console.log(e.target.value);
   //   setTel_First(e.target.value);
   // }, []);
-  const [tel_first, onChangeTel_First] = useInput(null)
-  const [tel_middle, onChangeTel_Middle] = useInput('');
-  const [tel_last, onChangeTel_Last] = useInput('');
-//   let fullPhone = tel_first + tel_middle + tel_last
-  const fullTel = (tel_first, tel_middle, tel_last) => tel_first+tel_middle+tel_last
-  const [email, onChangeEmail] = useInput('')
-  const [domain, onChangeDomain] = useInput(null)
+  const [tel_first, onChangeTel_First] = useInput(null);
+  const [tel_middle, onChangeTel_Middle] = useInput("");
+  const [tel_last, onChangeTel_Last] = useInput("");
+  //   let fullPhone = tel_first + tel_middle + tel_last
+  const fullTel = (tel_first, tel_middle, tel_last) =>
+    tel_first + tel_middle + tel_last;
+  const [email, onChangeEmail] = useInput("");
+  const [domain, onChangeDomain] = useInput(null);
   // const [domain, setDomain] = useState(null)
   // const onChangeDomain = useCallback((e) =>{
   //   setDomain(e.target.value)
   // })
-//   let fullEmail = email+'@' + domain
-  const fullEmail = (email,domain) => email+'@'+domain
-  const [userType, onChangeUserType] = useInput(false)
-  const [sms, onChangeSms] = useInput(false)
+  //   let fullEmail = email+'@' + domain
+  const fullEmail = (email, domain) => email + "@" + domain;
+  const [userType, onChangeUserType] = useInput(false);
+  const [sms, onChangeSms] = useInput(false);
 
-  const dispatch = useDispatch()
-  const {isLoggedInDone} = useSelector(state => state.user)
+  const dispatch = useDispatch();
+  const { isLoggedInDone } = useSelector((state) => state.user);
 
-  if(isLoggedInDone){
+  if (isLoggedInDone) {
     alert("이미 로그인 하셨습니다");
     history.goBack();
   }
 
-  const onSubmit = useCallback((e) =>{
-    e.preventDefault()
-    if (password !== passwordCheck) {
-      return setPasswordError(true);
-    }
-    dispatch({
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (password !== passwordCheck) {
+        return setPasswordError(true);
+      }
+      dispatch({
         type: SIGN_UP_REQUEST,
-        data:{
-            usermail: fullEmail(email,domain),
-            password,
-            username
-        }
-    })
-    history.push('/')
-  },[username, birth, gender, password, passwordCheck, zipcode, address, elseAddress, fullTel, fullEmail, userType, sms])
+        data: {
+          usermail: fullEmail(email, domain),
+          password,
+          username,
+        },
+      });
+      history.push("/");
+    },
+    [
+      username,
+      birth,
+      gender,
+      password,
+      passwordCheck,
+      zipcode,
+      address,
+      elseAddress,
+      fullTel,
+      fullEmail,
+      userType,
+      sms,
+    ]
+  );
   // let modal;
 
   // if (open !== null) {
@@ -195,7 +215,11 @@ const SignUp = ({ history }) => {
                 autoComplete="new-password"
                 required
               />
-            {passwordError && <span style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</span>}
+              {passwordError && (
+                <span style={{ color: "red" }}>
+                  비밀번호가 일치하지 않습니다.
+                </span>
+              )}
             </div>
           </div>
           {/*우편번호*/}
@@ -252,7 +276,7 @@ const SignUp = ({ history }) => {
                 value={tel_middle}
                 pattern="[0-9]{3,4}"
                 size="4"
-                maxLength='4'
+                maxLength="4"
                 onChange={onChangeTel_Middle}
                 required
               />
@@ -263,7 +287,7 @@ const SignUp = ({ history }) => {
                 value={tel_last}
                 pattern="[0-9]{3,4}"
                 size="4"
-                maxLength='4'
+                maxLength="4"
                 onChange={onChangeTel_Last}
                 required
               />
@@ -353,7 +377,12 @@ const SignUp = ({ history }) => {
           <div className={styles.wrapper}>
             <span>*SMS 통보여부(선택)</span>
             <div className={styles.input}>
-              <input id="sms" type="checkbox" name="sms" onChange={onChangeSms} />
+              <input
+                id="sms"
+                type="checkbox"
+                name="sms"
+                onChange={onChangeSms}
+              />
               <label htmlFor="sms">SMS통보 신청</label>
               <span>*신청결과를 휴대전화번호로 알려드립니다</span>
             </div>
@@ -363,9 +392,14 @@ const SignUp = ({ history }) => {
             value='회원가입신청'
             style={{border:'1px solid #1b1414', marginTop: '12px', fontSize:'15px', padding:'0 10px'}}
           /> */}
-                      <button
-            style={{border:'1px solid #000', marginTop: '12px', fontSize:'15px', padding:'0 10px'}}
-            type='submit'
+          <button
+            style={{
+              border: "1px solid #000",
+              marginTop: "12px",
+              fontSize: "15px",
+              padding: "0 10px",
+            }}
+            type="submit"
           >
             회원가입신청
           </button>

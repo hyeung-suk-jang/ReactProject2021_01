@@ -1,12 +1,12 @@
 import React from "react";
-import service1 from "../../../assets/images/service1.png";
-import service2 from "../../../assets/images/service2.png";
-import service3 from "../../../assets/images/service3.png";
-import service4 from "../../../assets/images/service4.png";
-import service5 from "../../../assets/images/service5.png";
-import service6 from "../../../assets/images/service6.png";
-import service7 from "../../../assets/images/service7.png";
-import service8 from "../../../assets/images/service8.png";
+import service1 from "../../../../../assets/images/service1.png";
+import service2 from "../../../../../assets/images/service2.png";
+import service3 from "../../../../../assets/images/service3.png";
+import service4 from "../../../../../assets/images/service4.png";
+import service5 from "../../../../../assets/images/service5.png";
+import service6 from "../../../../../assets/images/service6.png";
+import service7 from "../../../../../assets/images/service7.png";
+import service8 from "../../../../../assets/images/service8.png";
 
 const ServiceBar = () => (
   <div className="service">
